@@ -1,5 +1,7 @@
 # Panduan Fingerspot.io
 
+🌐 **Live: [toriqayataalmukhorobin-del.github.io](https://toriqayataalmukhorobin-del.github.io/)** — pusat panduan dengan tiga berkas di bawah ini.
+
 Kumpulan panduan pengguna Fingerspot.io dalam satu berkas HTML — mandiri (tanpa koneksi internet, font dan gambar tertanam langsung) dan siap dicetak/simpan sebagai PDF.
 
 ## Isi
