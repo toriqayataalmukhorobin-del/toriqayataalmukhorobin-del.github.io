@@ -39,7 +39,9 @@ p{text-wrap:pretty}
 /* ---------- Komponen utama (cover, langkah, kartu) ---------- */
 .cover{display:grid;grid-template-columns:1fr;gap:16px;align-items:stretch}
 @media (min-width:1024px){.cover{grid-template-columns:1.04fr .96fr}}
-.cover-copy-card{background:#fff;border:1px solid #c9d6e2;border-radius:18px;box-shadow:0 12px 32px rgba(15,23,42,.09);padding:24px;display:flex;flex-direction:column;justify-content:center;min-width:0}
+.cover-stack{display:flex;flex-direction:column;gap:14px;min-width:0}
+.mini-card{background:#fff;border:1px solid #cdd8e3;border-radius:14px;padding:22px 24px;box-shadow:0 2px 6px rgba(15,23,42,.06);min-width:0}
+@media (min-width:640px){.mini-card{padding:26px 28px}}
 .cover-media-card{display:flex;align-items:center;justify-content:center;border:1px solid #c9d6e2;border-radius:18px;box-shadow:0 12px 32px rgba(15,23,42,.09);background:linear-gradient(160deg,#e8f3fb 0%,#f3f9ff 100%);padding:20px;min-width:0}
 @media (min-width:640px){.cover-copy-card{padding:32px}.cover-media-card{padding:28px}}
 @media (min-width:1024px){.cover-copy-card{padding:40px}.cover-media-card{padding:36px}}
@@ -67,7 +69,8 @@ p{text-wrap:pretty}
 .benefit-label{margin-top:2px;font-size:12.5px;color:#64707c}
 .benefit-item-title{font-size:1.02rem;line-height:1.35;font-weight:800;color:#0f172a}
 
-.notice{margin-top:18px;border-left:3px solid #f5a623;background:#fff7e8;padding:11px 14px;font-size:13px;line-height:1.55;color:#5d4714;border-radius:0 10px 10px 0}
+.notice{margin-top:18px;border:1px solid #f3d9a4;border-left:4px solid #f5a623;background:#fff8e7;padding:12px 15px;font-size:13px;line-height:1.55;color:#5d4714;border-radius:14px;box-shadow:0 2px 6px rgba(83,63,15,.07)}
+.cover-stack .notice{margin-top:0}
 
 .flow-panel{margin-top:24px;border:1px solid var(--line);border-radius:14px;background:#fff;padding:22px;box-shadow:0 5px 18px rgba(15,23,42,.035);break-inside:avoid}
 .flow-grid{margin-top:18px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
@@ -166,6 +169,7 @@ body.drawer-open{overflow:hidden}
   body{background:#fff !important}
   .no-print,.drawer,.drawer-overlay,.menu-button,.scroll-top-button{display:none !important}
   .print-page{break-after:page;page-break-after:always;box-shadow:none !important;border:1px solid #dbe3ee !important;border-radius:0 !important}
+  .mini-card,.cover-media-card{box-shadow:none !important;break-inside:avoid}
   .print-cover{break-after:page;page-break-after:always;break-inside:avoid}
   .cover{display:block}
   .cover-copy-card,.cover-media-card{box-shadow:none !important;border:1px solid #dbe3ee !important}
@@ -204,7 +208,7 @@ body.drawer-open{overflow:hidden}
     .cover-summary-item:last-child{border-right:0;padding-right:0}
     .cover-summary-item span{font-size:11px;font-weight:800;color:var(--brand)}
     .cover-summary-item strong{font-size:12.5px;color:#33414d;font-weight:650;line-height:1.35}
-    .cover-notice{margin-top:18px;border-left:3px solid #f5a623;background:#fff9ee;padding:12px 14px;border-radius:0 10px 10px 0;font-size:13px;line-height:1.55;color:#61491f}
+    .cover-notice{border:1px solid #f3d9a4;border-left:4px solid #f5a623;background:#fff8e7;padding:12px 15px;border-radius:14px;box-shadow:0 2px 6px rgba(83,63,15,.07);font-size:13px;line-height:1.55;color:#5d4714}
     .cover-notice p{margin:0}
     .cover-illustration{display:flex;align-items:center;justify-content:center;border-top:1px solid var(--line);background:#f8fafc;padding:20px}
     .cover-art-card{width:100%;display:flex;justify-content:center}
@@ -341,15 +345,15 @@ body.drawer-open{overflow:hidden}
 </div>
 <main class="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:py-10">
 <section aria-labelledby="cover-title" class="cover print-cover">
-<div class="cover-copy-card">
-<p class="kicker">Fingerspot.io · Panduan Aktivasi</p>
+<div class="cover-stack">
+<div class="mini-card"><p class="kicker">Fingerspot.io · Panduan Aktivasi</p>
 <h1 class="guide-title" id="cover-title">Panduan Aktivasi Perangkat Absensi<br/><span class="cover-title-accent">Paket Bundling</span></h1>
-<p class="lead">Paket layanan Fingerspot.io tersedia dalam empat pilihan: <strong>V400</strong> (Rp400 ribu), <strong>V500</strong> (Rp500 ribu), <strong>V720</strong> (Rp720 ribu), dan <strong>V900</strong> (Rp900 ribu) per perangkat per tahun. Setiap paket memiliki batas jumlah karyawan, jumlah perangkat online, dan bonus MobilePro yang berbeda. Ikuti panduan ini untuk mengaktifkan perangkat menggunakan voucher bundling atau kuota perangkat yang tersedia di akun Anda.</p>
-<div aria-label="Ringkasan tahapan" class="cover-summary">
+<p class="lead">Paket layanan Fingerspot.io tersedia dalam empat pilihan: <strong>V400</strong> (Rp400 ribu), <strong>V500</strong> (Rp500 ribu), <strong>V720</strong> (Rp720 ribu), dan <strong>V900</strong> (Rp900 ribu) per perangkat per tahun. Setiap paket memiliki batas jumlah karyawan, jumlah perangkat online, dan bonus MobilePro yang berbeda. Ikuti panduan ini untuk mengaktifkan perangkat menggunakan voucher bundling atau kuota perangkat yang tersedia di akun Anda.</p></div>
+<div class="mini-card"><div aria-label="Ringkasan tahapan" class="cover-summary">
 <div class="cover-summary-item"><span>01</span><strong>Masuk atau daftar</strong></div>
 <div class="cover-summary-item"><span>02</span><strong>Pilih metode aktivasi</strong></div>
 <div class="cover-summary-item"><span>03</span><strong>Simpan perangkat</strong></div>
-</div>
+</div></div>
 <div class="cover-notice">
 <strong>Sebelum memulai</strong>
 <p>Siapkan akun Fingerspot.io dan Nomor Seri atau Cloud ID perangkat. Pilih metode aktivasi yang sesuai.</p>
