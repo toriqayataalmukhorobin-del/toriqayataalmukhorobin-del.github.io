@@ -80,6 +80,43 @@ footer{border-top:1px solid var(--line);padding:18px 20px;text-align:center;font
 footer a{color:#0369a1;text-decoration:none;font-weight:600}
 footer a:hover{text-decoration:underline}
 :focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+
+/* ===== Hidup: animasi & interaksi ===== */
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes blobDriftA{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(46px,-30px) scale(1.12)}66%{transform:translate(-32px,26px) scale(.94)}}
+@keyframes blobDriftB{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(-42px,34px) scale(1.08)}66%{transform:translate(30px,-24px) scale(.95)}}
+@keyframes pulseDot{0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,.5)}70%{box-shadow:0 0 0 6px rgba(16,185,129,0)}}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.hero-blobs{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.hero-blobs::before,.hero-blobs::after{content:"";position:absolute;border-radius:999px;filter:blur(70px)}
+.hero-blobs::before{width:340px;height:340px;top:-120px;left:-90px;background:radial-gradient(circle,rgba(14,165,233,.30),rgba(14,165,233,0) 70%);animation:blobDriftA 14s ease-in-out infinite}
+.hero-blobs::after{width:300px;height:300px;top:60px;right:-80px;background:radial-gradient(circle,rgba(56,128,184,.30),rgba(56,128,184,0) 70%);animation:blobDriftB 17s ease-in-out infinite}
+main{position:relative}
+main > *{position:relative;z-index:1}
+.reveal{animation:fadeUp .7s cubic-bezier(.22,1,.36,1) both}
+.reveal-1{animation-delay:.05s}.reveal-2{animation-delay:.16s}.reveal-3{animation-delay:.27s}.reveal-4{animation-delay:.38s}.reveal-5{animation-delay:.5s}
+.live-chip{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;color:#047857;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:999px;padding:6px 12px}
+.live-dot{width:8px;height:8px;border-radius:999px;background:#10b981;animation:pulseDot 1.8s ease-out infinite}
+.card{position:relative}
+.card-icon{transition:transform .25s cubic-bezier(.34,1.56,.64,1),background-color .25s ease,color .25s ease}
+.card:hover .card-icon{transform:rotate(-6deg) scale(1.12);background:#d9edff;color:#0369a1}
+.card-tag{transition:transform .25s ease}
+.card:hover .card-tag.utama{transform:scale(1.06)}
+/* ===== FAQ ===== */
+.faq{margin-top:30px}
+.faq-title{margin:26px 0 10px;font-size:14px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#94a3b8}
+.faq-item{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden;box-shadow:0 2px 6px rgba(15,23,42,.05)}
+.faq-item + .faq-item{margin-top:10px}
+.faq-item summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:14px;cursor:pointer;padding:15px 18px;font-size:13.5px;font-weight:700;color:#22303e;transition:background-color .15s ease}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary:hover{background:#f8fbff}
+.faq-item summary svg{flex:0 0 17px;width:17px;height:17px;color:#0b8ff3;transition:transform .25s ease}
+.faq-item[open] summary svg{transform:rotate(45deg)}
+.faq-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease}
+.faq-item[open] .faq-body{grid-template-rows:1fr}
+.faq-body > div{overflow:hidden}
+.faq-body p{margin:0;padding:0 18px 15px;font-size:13px;line-height:1.65;color:#5b6876;border-top:1px solid #eef2f6;padding-top:12px}
+@media (prefers-reduced-motion:reduce){.hero-blobs::before,.hero-blobs::after,.reveal,.live-dot,.card-icon,.card-tag{animation:none !important;transition:none !important}}
 </style>
 </head>
 <body>
@@ -96,17 +133,19 @@ footer a:hover{text-decoration:underline}
 </header>
 
 <main>
-<p class="kicker">Fingerspot.io · Pusat Panduan</p>
-<h1>Panduan Pengguna <span>Fingerspot.io</span></h1>
-<p class="lead">Tiga panduan resmi langkah-demi-langkah — dari aktivasi paket sampai registrasi karyawan. Semua mandiri, responsif, dan bisa langsung dicetak ke PDF.</p>
-<div class="hero-meta">
+<div class="hero-blobs" aria-hidden="true"></div>
+<p class="kicker reveal reveal-1">Fingerspot.io · Pusat Panduan</p>
+<h1 class="reveal reveal-2">Panduan Pengguna <span>Fingerspot.io</span></h1>
+<p class="lead reveal reveal-3">Tiga panduan resmi langkah-demi-langkah — dari aktivasi paket sampai registrasi karyawan. Semua mandiri, responsif, dan bisa langsung dicetak ke PDF.</p>
+<div class="hero-meta reveal reveal-4">
+<span class="live-chip"><span class="live-dot"></span>Live di GitHub Pages</span>
 <span class="hero-chip"><b>3</b> panduan lengkap</span>
 <span class="hero-chip"><b>Offline</b> tanpa internet</span>
 <span class="hero-chip"><b>PDF</b> siap cetak A4</span>
 </div>
 
-<p class="section-title">Pilih Panduan</p>
-<div class="grid">
+<p class="section-title reveal reveal-5">Pilih Panduan</p>
+<div class="grid reveal reveal-5">
 
 <a class="card" href="cara_mudah_aktivasi_paket_umkm_fingerspot_fix%20(1).html">
 <div class="card-top">
@@ -153,6 +192,15 @@ footer a:hover{text-decoration:underline}
 <span class="card-cta">Buka panduan <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
 </a>
 
+</div>
+
+
+<div class="faq reveal reveal-5">
+<p class="faq-title">Tanya Jawab Singkat</p>
+<details class="faq-item"><summary>Paket UMKM berlaku untuk akun seperti apa?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></summary><div class="faq-body"><div><p>Khusus akun baru. Gunakan email dan nomor HP yang belum pernah terdaftar di Fingerspot.io — akun lama tidak bisa mengaktifkan bonus Paket UMKM.</p></div></div></details>
+<details class="faq-item"><summary>Apakah panduan bisa dibuka tanpa internet?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></summary><div class="faq-body"><div><p>Bisa. Semua teks, gambar, dan font sudah tertanam di dalam file HTML, jadi halaman tetap tampil normal meski offline — cocok dibuka di lokasi tanpa sinyal.</p></div></div></details>
+<details class="faq-item"><summary>Bagaimana cara mencetak panduan ini ke PDF?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></summary><div class="faq-body"><div><p>Klik tombol <strong>Cetak / Simpan PDF</strong> di kanan atas halaman mana pun, lalu pilih “Save as PDF”. Tata letak A4 sudah diatur otomatis, langkahnya tidak terpotong antar halaman.</p></div></div></details>
+<details class="faq-item"><summary>Bingung mulai dari panduan yang mana?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></summary><div class="faq-body"><div><p>Kalau baru membeli perangkat, buka <strong>Aktivasi FREE Paket UMKM</strong> dulu. Untuk menambah perangkat ke akun yang sudah ada, buka <strong>Aktivasi Paket Bundling</strong>. Untuk mendaftarkan karyawan ke perangkat, buka <strong>Tambah &amp; Registrasi Karyawan</strong>.</p></div></div></details>
 </div>
 
 <div class="help">
@@ -278,6 +326,17 @@ footer a:hover{text-decoration:underline}
   document.addEventListener('click', function (e) {
     if (!e.target.closest('.topbar-search')) results.hidden = true;
   });
+  // placeholder berputar — membuat kolom pencarian terasa hidup
+  (function () {
+    var phrases = ['Cari "serial number"…', 'Cari "akun baru"…', 'Cari "voucher bundling"…', 'Cari "registrasi karyawan"…', 'Cari "paket UMKM"…', 'Cari "scan QR"…'];
+    var i = 0, dir = 1;
+    setInterval(function () {
+      if (document.activeElement === input || input.value) return;
+      i = (i + 1) % phrases.length;
+      input.setAttribute('placeholder', phrases[i]);
+    }, 3200);
+  })();
+
   document.addEventListener('keydown', function (e) {
     var tag = (e.target.tagName || '').toLowerCase();
     if (e.key === '/' && ['input', 'textarea', 'select', 'button'].indexOf(tag) === -1) {
