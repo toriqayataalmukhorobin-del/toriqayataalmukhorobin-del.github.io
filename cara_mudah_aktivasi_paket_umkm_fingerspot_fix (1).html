@@ -61,10 +61,8 @@ p{text-wrap:pretty}
 .guide-title{font-size:clamp(2rem,4vw,3.4rem);line-height:1.04;letter-spacing:-.035em;font-weight:750;color:#15202a}
 .guide-lead,.lead{font-size:15px;line-height:1.7;color:#596673;max-width:690px}
 
-.benefit-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:0;background:transparent;box-shadow:none;border-radius:0;overflow:visible}
-.benefit-item{padding:4px 18px;border-right:1px solid var(--line);min-width:0}
-.benefit-item:first-child{padding-left:0}
-.benefit-item:last-child{border-right:0;padding-right:0}
+.benefit-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;border:0;background:transparent;box-shadow:none;border-radius:0;overflow:visible}
+.benefit-item{padding:16px 17px;border:1px solid #cdd8e3;border-radius:14px;background:#fff;box-shadow:0 2px 6px rgba(15,23,42,.06);min-width:0}
 .benefit-value{font-size:22px;font-weight:800;color:#0369a1}
 .benefit-label{margin-top:2px;font-size:12.5px;color:#64707c}
 .benefit-item-title{font-size:1.02rem;line-height:1.35;font-weight:800;color:#0f172a}
@@ -156,8 +154,6 @@ body.drawer-open{overflow:hidden}
 /* ---------- Responsif ---------- */
 @media (max-width:767px){
   .benefit-grid{grid-template-columns:minmax(0,1fr)}
-  .benefit-item{border-right:0;border-bottom:1px solid var(--line)}
-  .benefit-item:last-child{border-bottom:0}
   .flow-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .prep-grid{grid-template-columns:1fr}
 }
@@ -223,11 +219,11 @@ body.drawer-open{overflow:hidden}
 <h1 class="guide-title mt-3">Aktivasi FREE<br/><span class="text-sky-500">Paket UMKM</span></h1>
 <p class="guide-lead mt-4">Panduan singkat untuk mengaktifkan bonus Paket UMKM dari pembelian perangkat Fingerspot di marketplace. Mulai dari scan QR pada kemasan sampai paket aktif di akun Fingerspot.io.</p>
 </div>
-<div class="mini-card"><div class="benefit-grid">
+<div class="benefit-grid">
   <div class="benefit-item"><div class="benefit-value">1</div><div class="benefit-label">Perangkat per akun</div></div>
   <div class="benefit-item"><div class="benefit-value">5</div><div class="benefit-label">Karyawan per akun</div></div>
   <div class="benefit-item"><div class="benefit-value">5</div><div class="benefit-label">Kuota MobilePro</div></div>
-</div></div>
+</div>
 <div class="notice"><strong>Perlu diperhatikan:</strong> Paket UMKM berlaku untuk akun baru. Gunakan email dan nomor HP yang belum pernah terdaftar di Fingerspot.io.</div>
 </div>
 <div class="cover-media-card">
