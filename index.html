@@ -141,6 +141,24 @@ footer a:hover{text-decoration:underline}
 .drawer-foot a:hover{text-decoration:underline}
 body.drawer-open{overflow:hidden}
 
+
+/* ===== Layout beranda: sidebar + konten ===== */
+.home-layout{display:grid;grid-template-columns:1fr;gap:0}
+.home-content{min-width:0}
+@media (min-width:1024px){
+  .home-layout{grid-template-columns:272px minmax(0,1fr);gap:32px;align-items:start}
+  .menu-button{display:none !important}
+  .drawer-overlay{display:none !important}
+  .drawer{position:sticky;top:78px;transform:none;visibility:visible;opacity:1;pointer-events:auto;width:auto;max-height:calc(100vh - 98px);overflow:auto;box-shadow:none;border:1px solid var(--line);border-radius:14px;background:#fff}
+  .drawer-brand{border-radius:14px 14px 0 0}
+}
+@media (max-width:1023px){
+  .drawer{position:fixed;top:64px;left:0;right:0;z-index:60;width:auto;max-height:70vh;overflow:auto;transform:translateY(-110%);visibility:hidden;opacity:0;pointer-events:none;transition:transform .3s ease,opacity .25s ease,visibility .3s;border-radius:0 0 14px 14px;border:0;border-bottom:1px solid var(--line);box-shadow:0 12px 30px rgba(15,23,42,.18)}
+  .drawer.open{transform:translateY(0);visibility:visible;opacity:1;pointer-events:auto}
+  .drawer-overlay{position:fixed;inset:0;z-index:55;background:rgba(15,23,42,.4);opacity:0;pointer-events:none;transition:opacity .25s ease}
+  .drawer-overlay.open{opacity:1;pointer-events:auto}
+}
+
 :focus-visible{outline:2px solid var(--brand);outline-offset:2px}
 @media (prefers-reduced-motion:reduce){.reveal,.live-dot,.card-icon,.card-tag,.card-cta svg,.faq-item summary svg{animation:none !important;transition:none !important}}
 
@@ -266,6 +284,8 @@ main > *{position:relative;z-index:1}
 </div>
 </header>
 
+<main>
+<div class="home-layout">
 <div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
 <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Daftar isi beranda" aria-hidden="true">
 <div class="drawer-brand">
@@ -281,7 +301,7 @@ main > *{position:relative;z-index:1}
 </nav>
 <div class="drawer-foot"><p class="drawer-foot-title">Butuh bantuan?</p><p>Kendala? <a href="#bantuan">Hubungi Fingerspot.io →</a></p></div>
 </aside>
-<main>
+<div class="home-content">
 <section class="hero-block" id="hero">
 <p class="kicker reveal reveal-1">Fingerspot.io · Pusat Panduan</p>
 <h1 class="reveal reveal-2">Panduan Pengguna <span>Fingerspot.io</span></h1>
@@ -388,6 +408,8 @@ main > *{position:relative;z-index:1}
 <span>Customer Care Online Fingerspot siap membantu kendala pendaftaran &amp; pengaitan perangkat.</span>
 </div>
 <a href="https://fingerspot.io/contact-us" rel="noopener">Hubungi Fingerspot.io →</a>
+</div>
+</div>
 </div>
 </main>
 
