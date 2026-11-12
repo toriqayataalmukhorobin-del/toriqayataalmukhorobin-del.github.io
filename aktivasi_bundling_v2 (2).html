@@ -172,6 +172,13 @@ body.drawer-open{overflow:hidden}
 body.lightbox-open{overflow:hidden}
 @media print{.lightbox,.lightbox-hint,.lightbox-close{display:none !important}}
 
+
+/* Hint perbesar gambar langkah */
+.screen-shell,.shot,.qr-card,.branch-shot,.add-method-shot,.sync-shot,.cover-service-image{position:relative}
+.screen-shell::after,.shot::after{content:"";position:absolute;top:10px;right:10px;width:30px;height:30px;border-radius:9px;background-color:rgba(15,23,42,.5);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center;background-size:15px;opacity:.62;transition:opacity .2s ease,transform .2s ease;pointer-events:none;z-index:2}
+.screen-shell:hover::after,.shot:hover::after{opacity:1;transform:scale(1.12)}
+@media (max-width:767px){.screen-shell::after,.shot::after{opacity:.75}}
+
 /* ---------- Print ---------- */
 @page{size:A4;margin:12mm}
 @media print{
