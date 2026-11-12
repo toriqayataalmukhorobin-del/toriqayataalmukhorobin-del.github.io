@@ -69,11 +69,17 @@ h1 span{color:var(--brand)}
 .faq-title{margin:26px 0 10px;font-size:14px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#94a3b8}
 .faq-item{border:1.5px solid var(--line);border-radius:14px;background:#fff;overflow:hidden;box-shadow:0 2px 6px rgba(15,23,42,.05)}
 .faq-item + .faq-item{margin-top:10px}
-.faq-item summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:14px;cursor:pointer;padding:15px 18px;font-size:13.5px;font-weight:700;color:#22303e;transition:background-color .15s ease}
+.faq-item summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:14px;cursor:pointer;padding:16px 18px;font-size:13.5px;font-weight:700;color:#22303e;transition:background-color .15s ease}
 .faq-item summary::-webkit-details-marker{display:none}
 .faq-item summary:hover{background:#f8fbff}
-.faq-item summary svg{flex:0 0 17px;width:17px;height:17px;color:#0b8ff3;transition:transform .25s ease}
-.faq-item[open] summary svg{transform:rotate(45deg)}
+.faq-icon{flex:0 0 34px;width:34px;height:34px;border-radius:10px;background:#e8f4ff;color:#0369a1;display:grid;place-items:center;transition:transform .25s ease,background-color .25s ease}
+.faq-item summary:hover .faq-icon{background:#d9edff;transform:scale(1.08)}
+.faq-item[open] .faq-icon{background:#0ea5e9;color:#fff}
+.faq-item summary svg{width:17px;height:17px}
+.faq-item summary .faq-q{flex:1;min-width:0}
+.faq-chevron{flex:0 0 18px;width:18px;height:18px;color:#94a3b8;transition:transform .25s ease,color .25s ease}
+.faq-item summary:hover .faq-chevron{color:#0369a1}
+.faq-item[open] .faq-chevron{transform:rotate(45deg);color:#0369a1}
 .faq-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease}
 .faq-item[open] .faq-body{grid-template-rows:1fr}
 .faq-body > div{overflow:hidden}
@@ -230,11 +236,17 @@ main > *{position:relative;z-index:1}
 .faq-title{margin:26px 0 10px;font-size:14px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#94a3b8}
 .faq-item{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden;box-shadow:0 2px 6px rgba(15,23,42,.05)}
 .faq-item + .faq-item{margin-top:10px}
-.faq-item summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:14px;cursor:pointer;padding:15px 18px;font-size:13.5px;font-weight:700;color:#22303e;transition:background-color .15s ease}
+.faq-item summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:14px;cursor:pointer;padding:16px 18px;font-size:13.5px;font-weight:700;color:#22303e;transition:background-color .15s ease}
 .faq-item summary::-webkit-details-marker{display:none}
 .faq-item summary:hover{background:#f8fbff}
-.faq-item summary svg{flex:0 0 17px;width:17px;height:17px;color:#0b8ff3;transition:transform .25s ease}
-.faq-item[open] summary svg{transform:rotate(45deg)}
+.faq-icon{flex:0 0 34px;width:34px;height:34px;border-radius:10px;background:#e8f4ff;color:#0369a1;display:grid;place-items:center;transition:transform .25s ease,background-color .25s ease}
+.faq-item summary:hover .faq-icon{background:#d9edff;transform:scale(1.08)}
+.faq-item[open] .faq-icon{background:#0ea5e9;color:#fff}
+.faq-item summary svg{width:17px;height:17px}
+.faq-item summary .faq-q{flex:1;min-width:0}
+.faq-chevron{flex:0 0 18px;width:18px;height:18px;color:#94a3b8;transition:transform .25s ease,color .25s ease}
+.faq-item summary:hover .faq-chevron{color:#0369a1}
+.faq-item[open] .faq-chevron{transform:rotate(45deg);color:#0369a1}
 .faq-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease}
 .faq-item[open] .faq-body{grid-template-rows:1fr}
 .faq-body > div{overflow:hidden}
@@ -341,14 +353,6 @@ main > *{position:relative;z-index:1}
 
 </div>
 
-
-<div class="faq reveal reveal-5">
-<p class="faq-title">03 · Tanya Jawab</p>
-<details class="faq-item"><summary>Paket UMKM berlaku untuk akun seperti apa?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></summary><div class="faq-body"><div><p>Khusus akun baru. Gunakan email dan nomor HP yang belum pernah terdaftar di Fingerspot.io — akun lama tidak bisa mengaktifkan bonus Paket UMKM.</p></div></div></details>
-<details class="faq-item"><summary>Apakah panduan bisa dibuka tanpa internet?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></summary><div class="faq-body"><div><p>Bisa. Semua teks, gambar, dan font sudah tertanam di dalam file HTML, jadi halaman tetap tampil normal meski offline — cocok dibuka di lokasi tanpa sinyal.</p></div></div></details>
-<details class="faq-item"><summary>Bagaimana cara mencetak panduan ini ke PDF?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></summary><div class="faq-body"><div><p>Klik tombol <strong>Cetak / Simpan PDF</strong> di kanan atas halaman mana pun, lalu pilih “Save as PDF”. Tata letak A4 sudah diatur otomatis, langkahnya tidak terpotong antar halaman.</p></div></div></details>
-<details class="faq-item"><summary>Bingung mulai dari panduan yang mana?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></summary><div class="faq-body"><div><p>Kalau baru membeli perangkat, buka <strong>Aktivasi FREE Paket UMKM</strong> dulu. Untuk menambah perangkat ke akun yang sudah ada, buka <strong>Aktivasi Paket Bundling</strong>. Untuk mendaftarkan karyawan ke perangkat, buka <strong>Tambah &amp; Registrasi Karyawan</strong>.</p></div></div></details>
-</div>
 </div>
 
 <div class="section" id="cara-pakai">
@@ -374,6 +378,13 @@ main > *{position:relative;z-index:1}
 </div>
 </div>
 <div class="faq reveal reveal-5">
+<details class="faq-item"><summary><span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 0 1 4.5 1.5c0 1.5-2 2-2 3.5M12 17h.01"/></svg></span><span class="faq-q">Paket UMKM berlaku untuk akun seperti apa?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></summary><div class="faq-body"><div><p>Khusus akun baru. Gunakan email dan nomor HP yang belum pernah terdaftar di Fingerspot.io — akun lama tidak bisa mengaktifkan bonus Paket UMKM.</p></div></div></details>
+<details class="faq-item"><summary><span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6"/></svg></span><span class="faq-q">Apa perbedaan Paket UMKM dan Paket Bundling?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></summary><div class="faq-body"><div><p>Paket UMKM adalah bonus FREE dari pembelian perangkat di marketplace (akun baru, kuota terbatas). Paket Bundling adalah paket berbayar (V400–V900) yang diaktifkan dengan voucher bundling atau kuota perangkat di akun yang sudah ada, dengan batas karyawan & perangkat lebih besar.</p></div></div></details>
+<details class="faq-item"><summary><span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg></span><span class="faq-q">Bagaimana cara mencetak panduan ini ke PDF?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></summary><div class="faq-body"><div><p>Klik tombol <strong>Cetak / Simpan PDF</strong> di kanan atas halaman mana pun, lalu pilih “Save as PDF”. Tata letak A4 sudah diatur otomatis, langkahnya tidak terpotong antar halaman.</p></div></div></details>
+<details class="faq-item"><summary><span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 4.5 1.5c0 1.5-2 2-2 3.5M12 17h.01"/></svg></span><span class="faq-q">Bingung mulai dari panduan yang mana?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></summary><div class="faq-body"><div><p>Kalau baru membeli perangkat, buka <strong>Aktivasi FREE Paket UMKM</strong> dulu. Untuk menambah perangkat ke akun yang sudah ada, buka <strong>Aktivasi Paket Bundling</strong>. Untuk mendaftarkan karyawan ke perangkat, buka <strong>Tambah &amp; Registrasi Karyawan</strong>.</p></div></div></details>
+</div>
+
+<div class="help" id="bantuan">
 <div class="help-text">
 <strong>Butuh bantuan saat aktivasi?</strong>
 <span>Customer Care Online Fingerspot siap membantu kendala pendaftaran &amp; pengaitan perangkat.</span>
