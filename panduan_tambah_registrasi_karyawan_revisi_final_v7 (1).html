@@ -104,11 +104,11 @@ p{text-wrap:pretty}
 .drawer-brand{position:relative;background:linear-gradient(135deg,#4D8FBC 0%,#3F87B9 55%,#326C97 100%);padding:17px 16px 15px;color:#fff;overflow:hidden}
 .drawer-brand::after{content:"";position:absolute;width:190px;height:190px;border-radius:999px;background:rgba(255,255,255,.09);top:-80px;right:-70px;pointer-events:none}
 .drawer-brand-row{position:relative;display:flex;align-items:center;gap:12px;padding-right:46px}
-.drawer-mark{flex:0 0 42px;width:42px;height:42px;border-radius:13px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);display:grid;place-items:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 0 0 0 rgba(255,255,255,.5);animation:markPulse 1.6s ease-in-out infinite}
-.drawer-mark svg{width:23px;height:23px}
-.drawer-brand-text{min-width:0}
-.drawer-brand-text strong{display:block;font-size:14.5px;font-weight:800;color:#fff;letter-spacing:.01em;line-height:1.25}
-.drawer-brand-text span{display:block;margin-top:2px;font-size:11px;color:#dbeafe;font-weight:600}
+.drawer-logo-link{display:inline-flex;align-items:center;background:#fff;border-radius:10px;padding:6px 10px;transition:opacity .15s ease,transform .15s ease;box-shadow:0 2px 8px rgba(15,23,42,.12)}
+.drawer-logo-link:hover{opacity:.88;transform:scale(1.03)}
+.drawer-logo-link:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.drawer-logo-img{height:22px;width:auto;display:block}
+.drawer-brand-sub{margin-top:10px;font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#dbeafe}
 .drawer-close{position:absolute;top:13px;right:13px;z-index:1;width:33px;height:33px;border:1px solid rgba(255,255,255,.45);background:rgba(255,255,255,.15);border-radius:9px;display:grid;place-items:center;cursor:pointer;color:#fff;transition:background-color .15s ease}
 .drawer-close:hover{background:rgba(255,255,255,.32)}
 .drawer-close svg{width:17px;height:17px}
@@ -156,6 +156,21 @@ body.drawer-open{overflow:hidden}
   .prep-grid{grid-template-columns:1fr}
 }
 @media (min-width:1024px){.flow-grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
+
+
+/* ---------- Lightbox perbesar gambar langkah ---------- */
+.screen-shell,.shot,.qr-card,.branch-shot,.add-method-shot,.sync-shot,.cover-service-image{cursor:zoom-in}
+.screen-shell img,.shot img,.qr-card img,.branch-shot img,.add-method-shot img,.sync-shot img,.cover-service-image{cursor:zoom-in}
+.lightbox{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(15,23,42,.86);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .28s ease}
+.lightbox.open{opacity:1;pointer-events:auto}
+.lightbox img{max-width:92vw;max-height:86vh;width:auto;height:auto;border-radius:12px;box-shadow:0 28px 70px rgba(0,0,0,.5);transform:scale(.9);transition:transform .32s cubic-bezier(.2,.8,.2,1)}
+.lightbox.open img{transform:scale(1)}
+.lightbox-close{position:absolute;top:18px;right:18px;width:44px;height:44px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.14);border-radius:12px;color:#fff;display:grid;place-items:center;cursor:pointer;transition:background-color .15s ease}
+.lightbox-close:hover{background:rgba(255,255,255,.3)}
+.lightbox-close svg{width:20px;height:20px}
+.lightbox-hint{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.7);font-size:12px;font-weight:600;letter-spacing:.04em;white-space:nowrap}
+body.lightbox-open{overflow:hidden}
+@media print{.lightbox,.lightbox-hint,.lightbox-close{display:none !important}}
 
 /* ---------- Print ---------- */
 @page{size:A4;margin:12mm}
@@ -602,6 +617,25 @@ body.drawer-open{overflow:hidden}
       });
     });
   });
+</script>
+<script>
+(function () {
+  var lb = document.createElement('div');
+  lb.className = 'lightbox'; lb.id = 'lightbox'; lb.setAttribute('aria-hidden', 'true');
+  lb.innerHTML = '<button class="lightbox-close" id="lightbox-close" type="button" aria-label="Tutup gambar"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button><img id="lightbox-img" alt=""/><div class="lightbox-hint">Klik di mana saja untuk menutup</div>';
+  document.body.appendChild(lb);
+  var img = document.getElementById('lightbox-img');
+  var closeBtn = document.getElementById('lightbox-close');
+  function open(src, alt) { img.src = src; img.alt = alt || ''; lb.classList.add('open'); lb.setAttribute('aria-hidden', 'false'); document.body.classList.add('lightbox-open'); }
+  function close() { lb.classList.remove('open'); lb.setAttribute('aria-hidden', 'true'); document.body.classList.remove('lightbox-open'); setTimeout(function () { img.src = ''; }, 260); }
+  closeBtn.addEventListener('click', close);
+  lb.addEventListener('click', function (e) { if (e.target === lb || e.target.classList.contains('lightbox-hint')) close(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && lb.classList.contains('open')) close(); });
+  var sel = '.screen-shell img, .shot img, .qr-card img, .branch-shot img, .add-method-shot img, .sync-shot img, .cover-service-image, .cover-visual img';
+  document.querySelectorAll(sel).forEach(function (el) {
+    el.addEventListener('click', function () { open(el.src, el.alt); });
+  });
+})();
 </script>
 </body>
 </html>
