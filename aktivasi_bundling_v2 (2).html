@@ -97,8 +97,8 @@ p{text-wrap:pretty}
 .menu-button svg{width:23px;height:23px}
 .drawer-overlay{position:fixed;inset:0;z-index:70;background:rgba(15,23,42,.55);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:opacity .35s ease}
 .drawer-overlay.open{opacity:1;pointer-events:auto}
-.drawer{position:fixed;top:0;left:0;bottom:0;z-index:80;width:min(332px,88vw);background:#fff;border-right:1px solid var(--line);box-shadow:12px 0 44px rgba(15,23,42,.28);display:flex;flex-direction:column;transform:translateX(-110%);opacity:0;pointer-events:none;transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .3s}
-.drawer.open{transform:translateX(0);opacity:1;pointer-events:auto;animation:drawerOpen .45s cubic-bezier(.2,.8,.2,1)}
+.drawer{position:fixed;top:64px;left:0;right:0;z-index:80;width:auto;max-height:0;overflow:hidden;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 12px 30px rgba(15,23,42,.18);display:flex;flex-direction:column;transform:translateY(-110%);opacity:0;pointer-events:none;transition:transform .32s cubic-bezier(.2,.8,.2,1),opacity .25s,max-height .32s ease}
+.drawer.open{transform:translateY(0);opacity:1;pointer-events:auto;max-height:70vh;overflow-y:auto;animation:drawerOpen .32s cubic-bezier(.2,.8,.2,1)}
 
 /* Brand header */
 .drawer-brand{position:relative;background:linear-gradient(135deg,#4D8FBC 0%,#3F87B9 55%,#326C97 100%);padding:17px 16px 15px;color:#fff;overflow:hidden}
@@ -142,6 +142,23 @@ p{text-wrap:pretty}
 .drawer-foot a{color:#0369a1;font-weight:700;text-decoration:none}
 .drawer-foot a:hover{text-decoration:underline}
 body.drawer-open{overflow:hidden}
+
+
+/* ---------- Layout beranda/panduan: sidebar + konten ---------- */
+.home-layout{display:grid;grid-template-columns:1fr;gap:0}
+.home-content{min-width:0}
+@media (min-width:1024px){
+  .home-layout{grid-template-columns:272px minmax(0,1fr);gap:32px;align-items:start}
+  .menu-button{display:none !important}
+  .drawer-overlay{display:none !important}
+  .drawer{position:sticky;top:78px;transform:none;visibility:visible;opacity:1;pointer-events:auto;width:auto;max-height:calc(100vh - 98px);overflow:auto;box-shadow:none;border:1px solid var(--line);border-radius:14px;background:#fff}
+}
+@media (max-width:1023px){
+  .drawer{position:fixed;top:64px;left:0;right:0;z-index:60;width:auto;max-height:0;overflow:hidden;transform:translateY(-110%);opacity:0;pointer-events:none;transition:transform .32s ease,opacity .25s ease,max-height .32s ease;border-radius:0 0 14px 14px;border:0;border-bottom:1px solid var(--line);box-shadow:0 12px 30px rgba(15,23,42,.18)}
+  .drawer.open{transform:translateY(0);opacity:1;pointer-events:auto;max-height:70vh;overflow-y:auto}
+  .drawer-overlay{position:fixed;inset:0;z-index:55;background:rgba(15,23,42,.4);opacity:0;pointer-events:none;transition:opacity .25s ease}
+  .drawer-overlay.open{opacity:1;pointer-events:auto}
+}
 
 /* ---------- Tombol kembali ke atas ---------- */
 .scroll-top-button{position:fixed;right:16px;bottom:16px;z-index:60;width:46px;height:46px;border-radius:12px;border:1px solid var(--line);background:#fff;color:#0879b9;display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 26px rgba(15,23,42,.16);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .2s ease,transform .2s ease,background-color .2s ease}
@@ -421,7 +438,7 @@ body.lightbox-open{overflow:hidden}
 </div>
 </aside>
 </section>
-<section aria-labelledby="quick-title" class="quick-nav">
+<section aria-labelledby="quick-title" class="quick-nav" id="panduan-aktivasi">
 <p class="kicker">Panduan aktivasi</p>
 <h2 id="quick-title">Langkah Aktivasi</h2>
 <p class="quick-description">Ikuti langkah sesuai kondisi akun. Jika jendela aktivasi muncul setelah Anda memasukkan Nomor Seri atau Cloud ID pada akun baru, lanjutkan ke Langkah 6.</p>
@@ -738,7 +755,7 @@ body.lightbox-open{overflow:hidden}
 </div>
 </article>
 </section>
-<section aria-labelledby="completion-title" class="completion-panel">
+<section aria-labelledby="completion-title" class="completion-panel" id="selesai">
 <div class="completion-main">
 <p class="completion-kicker">SELESAI</p>
 <h2 id="completion-title">Perangkat absensi berhasil ditambahkan.</h2>
