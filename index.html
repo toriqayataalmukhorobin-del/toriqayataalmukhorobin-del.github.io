@@ -158,22 +158,41 @@ html{scroll-behavior:smooth}
   .drawer-overlay{display:none !important}
   .home-layout{display:block}
 
-  /* Rail daftar isi: menyatu mulus dengan topbar, tanpa blok warna di pojok */
-  .drawer{position:fixed;top:0;left:0;bottom:0;width:290px;height:100vh;max-height:none;z-index:30;transform:none;visibility:visible;opacity:1;pointer-events:auto;overflow:hidden;box-shadow:none;border:0;border-right:1px solid var(--line);border-radius:0;background:#fff}
-  .drawer-brand{display:none}
-  .drawer-rail-head{display:block;padding:calc(var(--topbar-h,64px) + 22px) 22px 16px;border-bottom:1px solid #eef2f6;background:linear-gradient(180deg,#f7fbff 0%,#ffffff 100%)}
-  .drawer-nav{flex:1 1 auto;min-height:0;overflow-y:auto;padding:16px 14px 20px;scrollbar-width:thin;scrollbar-color:#d8e2ec transparent}
-  .drawer-foot{flex:0 0 auto;background:#fbfcfe}
-  .drawer-nav .sidebar-group,.drawer-nav .sidebar-link{opacity:1 !important;transform:none !important}
-  .sidebar-link{padding:8px 10px 8px 12px;font-size:13px;border-radius:11px}
-  .sidebar-link:hover{transform:translateX(3px)}
-  .sidebar-group-title{margin:14px 8px 8px}
+  /* Topbar penuh, logo di kiri, cari di kanan */
+  .topbar{background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .topbar-inner{max-width:none !important;width:auto !important;margin:0 !important;padding:12px 32px !important;gap:18px}
+  .topbar-search{max-width:520px}
 
-  /* Topbar menyambung ke rail, garis bawahnya mulai dari konten */
-  .topbar{background:#fff;border-bottom:none;box-shadow:none}
-  .topbar-inner{margin-left:290px !important;max-width:none !important;width:auto !important;padding:12px 32px;border-bottom:1px solid var(--line)}
-  .topbar-search input{border-radius:999px;transition:border-color .18s ease,box-shadow .18s ease,background-color .18s ease}
-  .topbar-search input:hover{border-color:#c7dced}
+  /* Rail daftar isi: di bawah topbar, polos & clean */
+  .drawer{position:fixed;top:var(--topbar-h,64px);left:0;bottom:0;width:290px;height:auto;max-height:none;z-index:30;transform:none;visibility:visible;opacity:1;pointer-events:auto;overflow:hidden;box-shadow:1px 0 0 rgba(15,23,42,.04),14px 0 34px -24px rgba(15,23,42,.28);border:0;border-right:1px solid var(--line);border-radius:0;background:#fff}
+  .drawer-brand{display:none}
+  .drawer-rail-head{display:none}
+  .drawer-nav{flex:1 1 auto;min-height:0;overflow-y:auto;padding:22px 16px 24px;scrollbar-width:thin;scrollbar-color:#dbe4ec transparent}
+  .drawer-foot{flex:0 0 auto;border:0;background:transparent;padding:0 16px 20px}
+  .drawer-foot-title{margin:0 0 8px;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#9aa8b6}
+  .drawer-foot p:not(.drawer-foot-title){margin:0;padding:12px 14px;border:1px solid #dcedfb;border-radius:14px;background:linear-gradient(135deg,#f1f8ff 0%,#f8fcff 100%);font-size:12.5px;line-height:1.55;color:#5b6b7b;box-shadow:0 1px 2px rgba(15,23,42,.03)}
+  .drawer-foot a{color:#0369a1;font-weight:700;text-decoration:none}
+  .drawer-foot a:hover{text-decoration:underline}
+
+  /* Label group */
+  .sidebar-group{margin-top:20px}
+  .sidebar-group:first-child{margin-top:0}
+  .sidebar-group-title{margin:0 0 8px;padding:0 10px;font-size:10.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#a3b0bd}
+  .sidebar-group-title::after{display:none}
+
+  /* Item menu: ikon polos, tanpa kotak */
+  .sidebar-nav{gap:2px}
+  .sidebar-link{position:relative;gap:10px;padding:8px 10px 8px 12px;border-radius:11px;color:#46525f;font-size:13.5px;font-weight:500;line-height:1.4;overflow:hidden;transition:background-color .18s ease,color .18s ease,transform .18s ease}
+  .sidebar-link::before{left:0;top:50%;transform:translateY(-50%);width:0;height:22px;border-radius:0 4px 4px 0;background:var(--brand);transition:width .2s ease,opacity .2s ease;opacity:0}
+  .sidebar-link:hover{background:#f4f8fc;color:#0f172a;transform:translateX(2px)}
+  .sidebar-link:hover::before{width:3px;opacity:1}
+  .sidebar-link.is-active{background:#e7f3ff;color:#0369a1;font-weight:650;transform:translateX(0)}
+  .sidebar-link.is-active::before{width:3px;opacity:1}
+  .sidebar-num{flex:0 0 18px;width:18px;height:18px;background:transparent;color:#a9b7c4;font-size:10.5px;transition:color .18s ease,transform .18s ease}
+  .sidebar-num svg{width:16px;height:16px}
+  .sidebar-link:hover .sidebar-num{background:transparent;color:#0b8ff3;transform:none}
+  .sidebar-link.is-active .sidebar-num{background:transparent;color:#0b8ff3;transform:none}
+
   main{width:auto !important;margin-left:290px !important;max-width:none !important;padding:0 32px 64px}
   .home-content{max-width:1280px;margin:0 auto}
   .hero-block{padding:56px 0 48px}
@@ -324,10 +343,6 @@ main > *{position:relative;z-index:1}
 <div class="home-layout">
 <div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
 <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Daftar isi beranda" aria-hidden="true">
-<div class="drawer-rail-head">
-<p class="drawer-rail-title">Daftar Isi</p>
-<p class="drawer-rail-sub">Pusat Panduan Fingerspot.io &mdash; 3 panduan lengkap, siap dipakai offline.</p>
-</div>
 <div class="drawer-brand">
 <div class="drawer-brand-row">
 <a class="drawer-wordmark" href="index.html" aria-label="Beranda Panduan Fingerspot.io">fingerspot.io</a>
