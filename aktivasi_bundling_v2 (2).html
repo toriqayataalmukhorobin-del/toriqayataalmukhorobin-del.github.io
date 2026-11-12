@@ -22,7 +22,7 @@
 }
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:#f5f7f9;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important}
+body{margin:0;background:radial-gradient(ellipse 90% 60% at 50% -10%,rgba(14,165,233,.10),transparent 70%),radial-gradient(ellipse 70% 50% at 100% 30%,rgba(56,128,184,.07),transparent 70%),linear-gradient(180deg,#eef6fd 0%,#f4f8fb 45%,#f7f9fb 100%);background-attachment:fixed;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;min-height:100vh}
 a{color:var(--brand-dark)}
 h1,h2,h3{text-wrap:balance}
 p{text-wrap:pretty}
@@ -90,20 +90,21 @@ p{text-wrap:pretty}
 .site-footer{border-top:1px solid var(--line);padding:22px 24px;text-align:center;color:#788794;font-size:12px;line-height:1.6}
 
 /* ---------- Drawer daftar isi (hanya di file utama) ---------- */
-.menu-button{display:inline-flex;align-items:center;justify-content:center;flex:0 0 44px;width:44px;height:44px;border:0;background:transparent;border-radius:12px;cursor:pointer;color:#0f172a;transition:background-color .15s ease,color .15s ease}
+.menu-button{display:inline-flex;align-items:center;justify-content:center;flex:0 0 44px;width:44px;height:44px;border:0;background:transparent;border-radius:12px;cursor:pointer;color:#0f172a;transition:background-color .15s ease,color .15s ease;position:relative}
+.menu-button::after{content:"";position:absolute;inset:4px;border-radius:10px;border:2px solid rgba(11,143,243,.35);opacity:0;animation:hambPulse 2.4s ease-out infinite}
 .menu-button:hover{background:#eaf4fd;color:#0369a1}
 .menu-button:active{background:#dcecfb}
 .menu-button svg{width:23px;height:23px}
-.drawer-overlay{position:fixed;inset:0;z-index:70;background:rgba(15,23,42,.48);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:opacity .25s ease}
+.drawer-overlay{position:fixed;inset:0;z-index:70;background:rgba(15,23,42,.55);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:opacity .35s ease}
 .drawer-overlay.open{opacity:1;pointer-events:auto}
-.drawer{position:fixed;top:0;left:0;bottom:0;z-index:80;width:min(332px,88vw);background:#fff;border-right:1px solid var(--line);box-shadow:12px 0 44px rgba(15,23,42,.28);display:flex;flex-direction:column;transform:translateX(-105%);visibility:hidden;transition:transform .3s cubic-bezier(.32,.72,.35,1),visibility .3s}
-.drawer.open{transform:translateX(0);visibility:visible}
+.drawer{position:fixed;top:0;left:0;bottom:0;z-index:80;width:min(332px,88vw);background:#fff;border-right:1px solid var(--line);box-shadow:12px 0 44px rgba(15,23,42,.28);display:flex;flex-direction:column;transform:translateX(-110%);opacity:0;pointer-events:none;transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .3s}
+.drawer.open{transform:translateX(0);opacity:1;pointer-events:auto;animation:drawerOpen .45s cubic-bezier(.2,.8,.2,1)}
 
 /* Brand header */
 .drawer-brand{position:relative;background:linear-gradient(135deg,#4D8FBC 0%,#3F87B9 55%,#326C97 100%);padding:17px 16px 15px;color:#fff;overflow:hidden}
 .drawer-brand::after{content:"";position:absolute;width:190px;height:190px;border-radius:999px;background:rgba(255,255,255,.09);top:-80px;right:-70px;pointer-events:none}
 .drawer-brand-row{position:relative;display:flex;align-items:center;gap:12px;padding-right:46px}
-.drawer-mark{flex:0 0 42px;width:42px;height:42px;border-radius:13px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);display:grid;place-items:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.3)}
+.drawer-mark{flex:0 0 42px;width:42px;height:42px;border-radius:13px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);display:grid;place-items:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 0 0 0 rgba(255,255,255,.5);animation:markPulse 1.6s ease-in-out infinite}
 .drawer-mark svg{width:23px;height:23px}
 .drawer-brand-text{min-width:0}
 .drawer-brand-text strong{display:block;font-size:14.5px;font-weight:800;color:#fff;letter-spacing:.01em;line-height:1.25}
@@ -119,15 +120,19 @@ p{text-wrap:pretty}
 .sidebar-group-title{display:flex;align-items:center;gap:8px;margin:10px 6px 6px;font-size:9.5px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:#a4b1bf}
 .sidebar-group-title::after{content:"";flex:1;height:1px;background:#edf1f6}
 .sidebar-nav{display:grid;gap:2px;margin:0}
-.sidebar-link{display:flex;gap:9px;align-items:center;padding:6px 8px;border-radius:10px;text-decoration:none;color:#3b4756;font-size:12.5px;line-height:1.35;transition:background-color .15s ease,color .15s ease}
-.sidebar-link:hover{background:#f0f9ff;color:#0369a1}
-.sidebar-link.is-active{background:#e0f2fe;color:#0369a1;font-weight:700}
-.sidebar-num{flex:0 0 27px;height:23px;border-radius:7px;background:#eef2f7;color:#64748b;display:grid;place-items:center;font-size:10.5px;font-weight:800;font-variant-numeric:tabular-nums;transition:background-color .15s ease,color .15s ease}
-.sidebar-num svg{width:13px;height:13px}
-.sidebar-link:hover .sidebar-num{background:#dcefff;color:#0369a1}
-.sidebar-link.is-active .sidebar-num{background:var(--brand);color:#fff}
+.sidebar-link{position:relative;display:flex;gap:9px;align-items:center;padding:6px 8px 6px 11px;border-radius:10px;text-decoration:none;color:#3b4756;font-size:12.5px;line-height:1.35;transition:background-color .2s ease,color .2s ease,transform .2s ease;overflow:hidden}
+.sidebar-link::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:0;height:20px;border-radius:0 4px 4px 0;background:var(--brand);transition:width .22s ease,opacity .22s ease;opacity:0}
+.sidebar-link:hover{background:#f0f9ff;color:#0369a1;transform:translateX(4px)}
+.sidebar-link:hover::before{width:3px;opacity:1}
+.sidebar-link.is-active{background:#e0f2fe;color:#0369a1;font-weight:700;transform:translateX(0)}
+.sidebar-link.is-active::before{width:3px;opacity:1}
+.sidebar-num{flex:0 0 27px;height:23px;border-radius:7px;background:#eef2f7;color:#64748b;display:grid;place-items:center;font-size:10.5px;font-weight:800;font-variant-numeric:tabular-nums;transition:background-color .2s ease,color .2s ease,transform .2s ease}
+.sidebar-num svg{width:13px;height:13px;transition:transform .22s ease}
+.sidebar-link:hover .sidebar-num{background:#dcefff;color:#0369a1;transform:scale(1.08)}
+.sidebar-link.is-active .sidebar-num{background:var(--brand);color:#fff;transform:scale(1.08)}
 .sidebar-link.is-done .sidebar-num{background:#d8f7e6;color:#059669}
 .sidebar-link.is-done.is-active .sidebar-num{background:var(--brand);color:#fff}
+.sidebar-link:hover .sidebar-num svg{transform:scale(1.15)}
 .sidebar-link-text{min-width:0}
 
 /* Footer bantuan */
@@ -188,6 +193,39 @@ body.drawer-open{overflow:hidden}
 .step-card p,.step-card h3,.step-card h4,.step-card h5,.step-card strong,.step-card li{overflow-wrap:break-word}
 
 .step-card p,.step-card h3,.step-card h4,.step-card h5,.step-card strong,.step-card li{overflow-wrap:anywhere;hyphens:auto}
+
+/* Staggered entrance drawer */
+.drawer-nav .sidebar-group{opacity:0;transform:translateY(8px);transition:opacity .32s ease,transform .32s ease}
+.drawer.open .drawer-nav .sidebar-group{opacity:1;transform:translateY(0)}
+.drawer.open .drawer-nav .sidebar-group:nth-child(1){transition-delay:.08s}
+.drawer.open .drawer-nav .sidebar-group:nth-child(2){transition-delay:.16s}
+.drawer.open .drawer-nav .sidebar-group:nth-child(3){transition-delay:.24s}
+.drawer-nav .sidebar-link{opacity:0;transform:translateX(-16px);transition:opacity .32s ease,transform .32s ease,background-color .2s ease,color .2s ease}
+.drawer.open .drawer-nav .sidebar-link{opacity:1;transform:translateX(0)}
+.drawer.open .drawer-nav .sidebar-link:nth-child(1){transition-delay:.12s}
+.drawer.open .drawer-nav .sidebar-link:nth-child(2){transition-delay:.16s}
+.drawer.open .drawer-nav .sidebar-link:nth-child(3){transition-delay:.20s}
+.drawer.open .drawer-nav .sidebar-link:nth-child(4){transition-delay:.24s}
+.drawer.open .drawer-nav .sidebar-link:nth-child(5){transition-delay:.28s}
+.drawer.open .drawer-nav .sidebar-link:nth-child(6){transition-delay:.32s}
+.drawer.open .drawer-nav .sidebar-link:nth-child(7){transition-delay:.36s}
+.drawer.open .drawer-nav .sidebar-link:nth-child(8){transition-delay:.40s}
+.drawer.open .drawer-nav .sidebar-link:nth-child(9){transition-delay:.44s}
+.drawer.open .drawer-nav .sidebar-link:nth-child(10){transition-delay:.48s}
+.drawer.open .drawer-nav .sidebar-link:nth-child(11){transition-delay:.52s}
+.drawer.open .drawer-nav .sidebar-link:nth-child(12){transition-delay:.56s}
+.drawer.open .drawer-nav .sidebar-link:nth-child(13){transition-delay:.60s}
+.drawer.open .drawer-nav .sidebar-link:nth-child(14){transition-delay:.64s}
+.drawer.open .drawer-nav .sidebar-link:nth-child(15){transition-delay:.68s}
+.drawer.open .drawer-nav .sidebar-link:nth-child(16){transition-delay:.72s}
+.drawer.open .drawer-nav .sidebar-link:nth-child(17){transition-delay:.76s}
+.drawer.open .drawer-nav .sidebar-link:nth-child(18){transition-delay:.80s}
+.drawer.open .drawer-nav .sidebar-link:nth-child(19){transition-delay:.84s}
+.drawer.open .drawer-nav .sidebar-link:nth-child(20){transition-delay:.88s}
+@media (prefers-reduced-motion:reduce){.drawer-mark,.drawer-nav .sidebar-group,.drawer-nav .sidebar-link{animation:none !important;transition:none !important;opacity:1 !important;transform:none !important}}
+
+.cover-media-card img,.cover-service-image{animation:floatY 4.5s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.cover-media-card img,.cover-service-image{animation:none !important}}
 
 
     /* ===== Komponen khusus Panduan Bundling (di-reskin agar identik dgn panduan lain) ===== */
