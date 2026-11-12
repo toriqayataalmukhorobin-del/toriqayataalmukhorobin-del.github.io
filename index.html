@@ -216,46 +216,9 @@ main > *{position:relative;z-index:1}
 <script>
 (function () {
   var SEARCH_INDEX = [
-    // Panduan UMKM (file utama)
-    { t: 'Mulai Aktivasi Garansi', g: 'UMKM', u: 'cara_mudah_aktivasi_paket_umkm_fingerspot_fix%20(1).html#step-1', k: 'garansi scan qr kemasan awal' },
-    { t: 'Masukkan Serial Number Perangkat', g: 'UMKM', u: 'cara_mudah_aktivasi_paket_umkm_fingerspot_fix%20(1).html#step-2', k: 'serial number sn nomor seri cloud id' },
-    { t: 'Buat Akun Baru', g: 'UMKM', u: 'cara_mudah_aktivasi_paket_umkm_fingerspot_fix%20(1).html#step-3', k: 'daftar akun registrasi baru mulai aja dulu' },
-    { t: 'Lengkapi Data Akun', g: 'UMKM', u: 'cara_mudah_aktivasi_paket_umkm_fingerspot_fix%20(1).html#step-4', k: 'formulir registrasi nama perusahaan email hp' },
-    { t: 'Garansi Berhasil Diaktifkan', g: 'UMKM', u: 'cara_mudah_aktivasi_paket_umkm_fingerspot_fix%20(1).html#step-5', k: 'garansi aktif berhasil' },
-    { t: 'Unduh Fingerspot.io Desktop', g: 'UMKM', u: 'cara_mudah_aktivasi_paket_umkm_fingerspot_fix%20(1).html#step-6', k: 'download desktop aplikasi pc windows' },
-    { t: 'Unduh Fingerspot.io Mobile', g: 'UMKM', u: 'cara_mudah_aktivasi_paket_umkm_fingerspot_fix%20(1).html#step-7', k: 'download mobile aplikasi hp android ios apk' },
-    { t: 'Lengkapi Data Perangkat', g: 'UMKM', u: 'cara_mudah_aktivasi_paket_umkm_fingerspot_fix%20(1).html#step-8', k: 'nama perangkat password administrator kantor zona waktu' },
-    { t: 'Setujui Ketentuan Perangkat', g: 'UMKM', u: 'cara_mudah_aktivasi_paket_umkm_fingerspot_fix%20(1).html#step-9', k: 'syarat ketentuan setuju centang' },
-    { t: 'Hubungkan Tanpa Paket', g: 'UMKM', u: 'cara_mudah_aktivasi_paket_umkm_fingerspot_fix%20(1).html#step-10', k: 'hubungkan perangkat tanpa paket' },
-    { t: 'Aktifkan Paket UMKM', g: 'UMKM', u: 'cara_mudah_aktivasi_paket_umkm_fingerspot_fix%20(1).html#step-11', k: 'paket umkm free aktifkan' },
-    { t: 'Baca Ketentuan Paket UMKM', g: 'UMKM', u: 'cara_mudah_aktivasi_paket_umkm_fingerspot_fix%20(1).html#step-12', k: 'ketentuan paket umkm kuota mobilepro' },
-    { t: 'Paket UMKM Berhasil Diaktifkan', g: 'UMKM', u: 'cara_mudah_aktivasi_paket_umkm_fingerspot_fix%20(1).html#step-13', k: 'berhasil diaktifkan sukses' },
-    { t: 'Buka Informasi Layanan', g: 'UMKM', u: 'cara_mudah_aktivasi_paket_umkm_fingerspot_fix%20(1).html#step-14', k: 'informasi layanan kuota paket cek' },
-    { t: 'Pastikan Paket UMKM Aktif', g: 'UMKM', u: 'cara_mudah_aktivasi_paket_umkm_fingerspot_fix%20(1).html#step-15', k: 'pastikan aktif cek status kuota' },
-    { t: 'Scan QR pada kemasan perangkat', g: 'UMKM', u: 'cara_mudah_aktivasi_paket_umkm_fingerspot_fix%20(1).html#scan-qr', k: 'qr barcode scan kemasan' },
-    { t: 'Persiapan sebelum mulai', g: 'UMKM', u: 'cara_mudah_aktivasi_paket_umkm_fingerspot_fix%20(1).html#persiapan', k: 'persiapan siapkan perangkat email hp koneksi' },
-    // Panduan Bundling
-    { t: 'Masuk atau daftar di Fingerspot.io', g: 'Bundling', u: 'aktivasi_bundling_v2%20(2).html#langkah-1', k: 'login masuk akun daftar mulai aja dulu' },
-    { t: 'Buka halaman tambah perangkat', g: 'Bundling', u: 'aktivasi_bundling_v2%20(2).html#langkah-2', k: 'tambah perangkat menu perangkat absensi daftar perangkat' },
-    { t: 'Masukkan Nomor Seri atau Cloud ID', g: 'Bundling', u: 'aktivasi_bundling_v2%20(2).html#langkah-3', k: 'serial number sn nomor seri cloud id' },
-    { t: 'Pilih metode aktivasi', g: 'Bundling', u: 'aktivasi_bundling_v2%20(2).html#flow-choice', k: 'metode aktivasi voucher kuota' },
-    { t: 'Pilih voucher bundling', g: 'Bundling', u: 'aktivasi_bundling_v2%20(2).html#langkah-4', k: 'voucher bundling v400 v500 v720 v900' },
-    { t: 'Gunakan kuota yang ada', g: 'Bundling', u: 'aktivasi_bundling_v2%20(2).html#flow-2', k: 'kuota perangkat aktivasi kuota' },
-    { t: 'Periksa rincian perpanjangan layanan', g: 'Bundling', u: 'aktivasi_bundling_v2%20(2).html#langkah-5', k: 'rincian perpanjangan voucher konfirmasi aktivasi' },
-    { t: 'Lengkapi informasi perangkat', g: 'Bundling', u: 'aktivasi_bundling_v2%20(2).html#langkah-6', k: 'nama perangkat password administrator kantor zona waktu' },
-    { t: 'Setujui syarat dan ketentuan', g: 'Bundling', u: 'aktivasi_bundling_v2%20(2).html#langkah-7', k: 'syarat ketentuan setuju centang' },
-    { t: 'Pastikan perangkat berhasil ditambahkan', g: 'Bundling', u: 'aktivasi_bundling_v2%20(2).html#langkah-8', k: 'berhasil ditambahkan selesai notifikasi' },
-    // Panduan Karyawan
-    { t: 'Buka Menu Karyawan', g: 'Karyawan', u: 'panduan_tambah_registrasi_karyawan_revisi_final_v7%20(1).html#step-1', k: 'menu karyawan pengelolaan' },
-    { t: 'Pilih Daftar Karyawan', g: 'Karyawan', u: 'panduan_tambah_registrasi_karyawan_revisi_final_v7%20(1).html#step-2', k: 'daftar karyawan submenu' },
-    { t: 'Buka Halaman Daftar Karyawan', g: 'Karyawan', u: 'panduan_tambah_registrasi_karyawan_revisi_final_v7%20(1).html#step-3', k: 'halaman daftar karyawan data kantor jabatan jadwal' },
-    { t: 'Pilih Cara Tambah Karyawan', g: 'Karyawan', u: 'panduan_tambah_registrasi_karyawan_revisi_final_v7%20(1).html#step-4', k: 'tambah karyawan tombol manual' },
-    { t: 'Tambah Karyawan Manual', g: 'Karyawan', u: 'panduan_tambah_registrasi_karyawan_revisi_final_v7%20(1).html#step-4', k: 'manual satu karyawan satu per satu' },
-    { t: 'Import Excel (massal)', g: 'Karyawan', u: 'panduan_tambah_registrasi_karyawan_revisi_final_v7%20(1).html#step-4', k: 'impor excel xls xlsx template massal banyak' },
-    { t: 'Lengkapi Data Karyawan', g: 'Karyawan', u: 'panduan_tambah_registrasi_karyawan_revisi_final_v7%20(1).html#step-5', k: 'nama kantor nik jabatan id perangkat pin pin jenis kelamin' },
-    { t: 'Hubungkan ke Perangkat', g: 'Karyawan', u: 'panduan_tambah_registrasi_karyawan_revisi_final_v7%20(1).html#step-5', k: 'hubungkan perangkat verifikasi wajah sidik jari kartu vena sinkronisasi' },
-    { t: 'Simpan Tanpa Perangkat', g: 'Karyawan', u: 'panduan_tambah_registrasi_karyawan_revisi_final_v7%20(1).html#step-5', k: 'simpan tanpa perangkat' },
-    { t: 'Simpan Data Karyawan', g: 'Karyawan', u: 'panduan_tambah_registrasi_karyawan_revisi_final_v7%20(1).html#step-6', k: 'simpan buat baru simpan' }
+    { t: 'Aktivasi FREE Paket UMKM', g: 'UMKM', u: 'cara_mudah_aktivasi_paket_umkm_fingerspot_fix%20(1).html', k: 'paket umkm aktivasi bonus marketplace scan qr kemasan akun fingerspot.io kuota mobilepro' },
+    { t: 'Aktivasi Paket Bundling', g: 'Bundling', u: 'aktivasi_bundling_v2%20(2).html', k: 'paket bundling perangkat absensi voucher kuota v400 v500 v720 v900 garansi serial number cloud id' },
+    { t: 'Tambah & Registrasi Karyawan', g: 'Karyawan', u: 'panduan_tambah_registrasi_karyawan_revisi_final_v7%20(1).html', k: 'tambah karyawan registrasi wajah sidik jari kartu import excel pengelolaan absensi' }
   ];
 
   var input = document.getElementById('guide-search');
@@ -328,7 +291,7 @@ main > *{position:relative;z-index:1}
   });
   // placeholder berputar — membuat kolom pencarian terasa hidup
   (function () {
-    var phrases = ['Cari "serial number"…', 'Cari "akun baru"…', 'Cari "voucher bundling"…', 'Cari "registrasi karyawan"…', 'Cari "paket UMKM"…', 'Cari "scan QR"…'];
+    var phrases = ['Cari "paket UMKM"…', 'Cari "paket bundling"…', 'Cari "registrasi karyawan"…', 'Cari "aktivasi perangkat"…'];
     var i = 0, dir = 1;
     setInterval(function () {
       if (document.activeElement === input || input.value) return;

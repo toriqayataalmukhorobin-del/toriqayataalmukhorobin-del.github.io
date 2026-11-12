@@ -119,15 +119,19 @@ p{text-wrap:pretty}
 .sidebar-group-title{display:flex;align-items:center;gap:8px;margin:10px 6px 6px;font-size:9.5px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:#a4b1bf}
 .sidebar-group-title::after{content:"";flex:1;height:1px;background:#edf1f6}
 .sidebar-nav{display:grid;gap:2px;margin:0}
-.sidebar-link{display:flex;gap:9px;align-items:center;padding:6px 8px;border-radius:10px;text-decoration:none;color:#3b4756;font-size:12.5px;line-height:1.35;transition:background-color .15s ease,color .15s ease}
-.sidebar-link:hover{background:#f0f9ff;color:#0369a1}
-.sidebar-link.is-active{background:#e0f2fe;color:#0369a1;font-weight:700}
-.sidebar-num{flex:0 0 27px;height:23px;border-radius:7px;background:#eef2f7;color:#64748b;display:grid;place-items:center;font-size:10.5px;font-weight:800;font-variant-numeric:tabular-nums;transition:background-color .15s ease,color .15s ease}
-.sidebar-num svg{width:13px;height:13px}
-.sidebar-link:hover .sidebar-num{background:#dcefff;color:#0369a1}
-.sidebar-link.is-active .sidebar-num{background:var(--brand);color:#fff}
+.sidebar-link{position:relative;display:flex;gap:9px;align-items:center;padding:6px 8px 6px 11px;border-radius:10px;text-decoration:none;color:#3b4756;font-size:12.5px;line-height:1.35;transition:background-color .2s ease,color .2s ease,transform .2s ease;overflow:hidden}
+.sidebar-link::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:0;height:20px;border-radius:0 4px 4px 0;background:var(--brand);transition:width .22s ease,opacity .22s ease;opacity:0}
+.sidebar-link:hover{background:#f0f9ff;color:#0369a1;transform:translateX(4px)}
+.sidebar-link:hover::before{width:3px;opacity:1}
+.sidebar-link.is-active{background:#e0f2fe;color:#0369a1;font-weight:700;transform:translateX(0)}
+.sidebar-link.is-active::before{width:3px;opacity:1}
+.sidebar-num{flex:0 0 27px;height:23px;border-radius:7px;background:#eef2f7;color:#64748b;display:grid;place-items:center;font-size:10.5px;font-weight:800;font-variant-numeric:tabular-nums;transition:background-color .2s ease,color .2s ease,transform .2s ease}
+.sidebar-num svg{width:13px;height:13px;transition:transform .22s ease}
+.sidebar-link:hover .sidebar-num{background:#dcefff;color:#0369a1;transform:scale(1.08)}
+.sidebar-link.is-active .sidebar-num{background:var(--brand);color:#fff;transform:scale(1.08)}
 .sidebar-link.is-done .sidebar-num{background:#d8f7e6;color:#059669}
 .sidebar-link.is-done.is-active .sidebar-num{background:var(--brand);color:#fff}
+.sidebar-link:hover .sidebar-num svg{transform:scale(1.15)}
 .sidebar-link-text{min-width:0}
 
 /* Footer bantuan */
