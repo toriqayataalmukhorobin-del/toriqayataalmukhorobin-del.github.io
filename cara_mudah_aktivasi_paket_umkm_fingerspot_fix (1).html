@@ -174,11 +174,22 @@ section[id],div[id].flow-detail,div[id].branch-panel{scroll-margin-top:92px}
 
 
 /* ---------- Animasi scroll: reveal, progress bar, smooth scroll ---------- */
-.js-reveal .reveal,.js-reveal .reveal-item{opacity:0;transform:translateY(34px) scale(.985);transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1)}
+/* Indikator aktif yang slid di sidebar */
+.drawer-nav{position:relative}
+.rail-indicator{position:absolute;left:0;right:0;top:0;height:0;border-radius:11px;background:#e7f3ff;opacity:0;pointer-events:none;z-index:0;transition:transform .4s cubic-bezier(.19,1,.22,1),height .4s cubic-bezier(.19,1,.22,1),opacity .25s ease}
+.drawer-nav .sidebar-link{position:relative;z-index:1}
+.drawer-nav .sidebar-link.is-active{background:transparent}
+.drawer-nav .sidebar-link:hover{background:transparent}
+.drawer-nav .sidebar-link:hover::before{width:3px;opacity:1}
+.js-reveal .reveal,.js-reveal .reveal-item{opacity:.001;transform:translateY(20px) scale(.996);transition:opacity .34s cubic-bezier(.19,1,.22,1),transform .58s cubic-bezier(.19,1,.22,1)}
+.js-reveal .reveal.in,.js-reveal .reveal-item.in{opacity:1;transform:none}
+.js-reveal .section-label{position:relative;display:inline-block}
+.js-reveal .section-label::after{content:"";position:absolute;left:0;bottom:-9px;height:2px;width:0;border-radius:2px;background:linear-gradient(90deg,#38bdf8,#0b8ff3);transition:width .6s cubic-bezier(.19,1,.22,1) .1s}
+.js-reveal .section-label.in::after{width:46px}
 .js-reveal .reveal.in,.js-reveal .reveal-item.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.js-reveal .reveal,.js-reveal .reveal-item{opacity:1 !important;transform:none !important;transition:none !important}}
 @media print{.reveal,.reveal-item{opacity:1 !important;transform:none !important}}
-.scroll-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:300;background:linear-gradient(90deg,#7dd3fc,#0b8ff3 55%,#0369a1);transform:scaleX(0);transform-origin:left center;pointer-events:none;box-shadow:0 0 14px rgba(11,143,243,.45)}
+.scroll-progress{position:fixed;top:0;left:0;right:0;height:2.5px;z-index:300;background:linear-gradient(90deg,#38bdf8,#0b8ff3 60%,#0369a1);transform:scaleX(0);transform-origin:left center;pointer-events:none;opacity:0;transition:opacity .3s ease;box-shadow:0 0 12px rgba(11,143,243,.4)}
 
 /* ---------- Lightbox perbesar gambar langkah ---------- */
 .screen-shell,.shot,.qr-card,.branch-shot,.add-method-shot,.sync-shot,.cover-service-image{cursor:zoom-in}
@@ -293,7 +304,8 @@ body.lightbox-open{overflow:hidden}
 </div>
 <div class="drawer-brand-sub">Daftar Isi · Panduan Aktivasi UMKM</div>
 </div>
-<nav class="drawer-nav" id="drawer-nav" aria-label="Daftar isi panduan"><div class="sidebar-group"><p class="sidebar-group-title">Mulai</p><div class="sidebar-nav"><a class="sidebar-link" href="#cover"><span class="sidebar-num"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 11.2 12 4l8 7.2"/><path d="M6.6 9.8V20h10.8V9.8"/></svg></span><span class="sidebar-link-text">Ringkasan panduan</span></a><a class="sidebar-link" href="#panduan-aktivasi"><span class="sidebar-num"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9.5 6H20M9.5 12H20M9.5 18H20"/><path d="M4 6h.01M4 12h.01M4 18h.01"/></svg></span><span class="sidebar-link-text">Panduan & alur aktivasi</span></a><a class="sidebar-link" href="#persiapan"><span class="sidebar-num"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="6" y="4.5" width="12" height="16" rx="2"/><path d="m10.2 12.6 1.9 1.9 3.6-4"/></svg></span><span class="sidebar-link-text">Persiapan sebelum mulai</span></a><a class="sidebar-link" href="#scan-qr"><span class="sidebar-num"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="4" y="4" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1"/><path d="M14 14h2.3v2.3H14z" fill="currentColor" stroke="none"/><path d="M17.8 17.8H20v2.2h-2.2z" fill="currentColor" stroke="none"/></svg></span><span class="sidebar-link-text">Scan QR pada kemasan</span></a></div></div><div class="sidebar-group"><p class="sidebar-group-title">Langkah Aktivasi</p><div class="sidebar-nav"><a class="sidebar-link" href="#step-1"><span class="sidebar-num">01</span><span class="sidebar-link-text">Mulai Aktivasi Garansi</span></a><a class="sidebar-link" href="#step-2"><span class="sidebar-num">02</span><span class="sidebar-link-text">Masukkan Serial Number</span></a><a class="sidebar-link" href="#step-3"><span class="sidebar-num">03</span><span class="sidebar-link-text">Buat Akun Baru</span></a><a class="sidebar-link" href="#step-4"><span class="sidebar-num">04</span><span class="sidebar-link-text">Lengkapi Data Akun</span></a><a class="sidebar-link" href="#step-5"><span class="sidebar-num">05</span><span class="sidebar-link-text">Garansi Berhasil Diaktifkan</span></a><a class="sidebar-link" href="#step-6"><span class="sidebar-num">06</span><span class="sidebar-link-text">Unduh Fingerspot.io Desktop</span></a><a class="sidebar-link" href="#step-7"><span class="sidebar-num">07</span><span class="sidebar-link-text">Unduh Fingerspot.io Mobile</span></a><a class="sidebar-link" href="#step-8"><span class="sidebar-num">08</span><span class="sidebar-link-text">Lengkapi Data Perangkat</span></a><a class="sidebar-link" href="#step-9"><span class="sidebar-num">09</span><span class="sidebar-link-text">Setujui Ketentuan Perangkat</span></a><a class="sidebar-link" href="#step-10"><span class="sidebar-num">10</span><span class="sidebar-link-text">Hubungkan Tanpa Paket</span></a><a class="sidebar-link" href="#step-11"><span class="sidebar-num">11</span><span class="sidebar-link-text">Aktifkan Paket UMKM</span></a><a class="sidebar-link" href="#step-12"><span class="sidebar-num">12</span><span class="sidebar-link-text">Baca Ketentuan Paket UMKM</span></a><a class="sidebar-link" href="#step-13"><span class="sidebar-num">13</span><span class="sidebar-link-text">Paket UMKM Berhasil Diaktifkan</span></a><a class="sidebar-link" href="#step-14"><span class="sidebar-num">14</span><span class="sidebar-link-text">Buka Informasi Layanan</span></a><a class="sidebar-link" href="#step-15"><span class="sidebar-num">15</span><span class="sidebar-link-text">Pastikan Paket UMKM Aktif</span></a></div></div><div class="sidebar-group"><p class="sidebar-group-title">Penutup</p><div class="sidebar-nav"><a class="sidebar-link" href="#selesai"><span class="sidebar-num"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="m8.9 12.3 2.3 2.3 4.1-4.3"/></svg></span><span class="sidebar-link-text">Selesai & cek hasil</span></a></div></div></nav>
+<nav class="drawer-nav" id="drawer-nav" aria-label="Daftar isi panduan">
+<span class="rail-indicator" id="rail-indicator" aria-hidden="true"></span><div class="sidebar-group"><p class="sidebar-group-title">Mulai</p><div class="sidebar-nav"><a class="sidebar-link" href="#cover"><span class="sidebar-num"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 11.2 12 4l8 7.2"/><path d="M6.6 9.8V20h10.8V9.8"/></svg></span><span class="sidebar-link-text">Ringkasan panduan</span></a><a class="sidebar-link" href="#panduan-aktivasi"><span class="sidebar-num"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9.5 6H20M9.5 12H20M9.5 18H20"/><path d="M4 6h.01M4 12h.01M4 18h.01"/></svg></span><span class="sidebar-link-text">Panduan & alur aktivasi</span></a><a class="sidebar-link" href="#persiapan"><span class="sidebar-num"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="6" y="4.5" width="12" height="16" rx="2"/><path d="m10.2 12.6 1.9 1.9 3.6-4"/></svg></span><span class="sidebar-link-text">Persiapan sebelum mulai</span></a><a class="sidebar-link" href="#scan-qr"><span class="sidebar-num"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="4" y="4" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1"/><path d="M14 14h2.3v2.3H14z" fill="currentColor" stroke="none"/><path d="M17.8 17.8H20v2.2h-2.2z" fill="currentColor" stroke="none"/></svg></span><span class="sidebar-link-text">Scan QR pada kemasan</span></a></div></div><div class="sidebar-group"><p class="sidebar-group-title">Langkah Aktivasi</p><div class="sidebar-nav"><a class="sidebar-link" href="#step-1"><span class="sidebar-num">01</span><span class="sidebar-link-text">Mulai Aktivasi Garansi</span></a><a class="sidebar-link" href="#step-2"><span class="sidebar-num">02</span><span class="sidebar-link-text">Masukkan Serial Number</span></a><a class="sidebar-link" href="#step-3"><span class="sidebar-num">03</span><span class="sidebar-link-text">Buat Akun Baru</span></a><a class="sidebar-link" href="#step-4"><span class="sidebar-num">04</span><span class="sidebar-link-text">Lengkapi Data Akun</span></a><a class="sidebar-link" href="#step-5"><span class="sidebar-num">05</span><span class="sidebar-link-text">Garansi Berhasil Diaktifkan</span></a><a class="sidebar-link" href="#step-6"><span class="sidebar-num">06</span><span class="sidebar-link-text">Unduh Fingerspot.io Desktop</span></a><a class="sidebar-link" href="#step-7"><span class="sidebar-num">07</span><span class="sidebar-link-text">Unduh Fingerspot.io Mobile</span></a><a class="sidebar-link" href="#step-8"><span class="sidebar-num">08</span><span class="sidebar-link-text">Lengkapi Data Perangkat</span></a><a class="sidebar-link" href="#step-9"><span class="sidebar-num">09</span><span class="sidebar-link-text">Setujui Ketentuan Perangkat</span></a><a class="sidebar-link" href="#step-10"><span class="sidebar-num">10</span><span class="sidebar-link-text">Hubungkan Tanpa Paket</span></a><a class="sidebar-link" href="#step-11"><span class="sidebar-num">11</span><span class="sidebar-link-text">Aktifkan Paket UMKM</span></a><a class="sidebar-link" href="#step-12"><span class="sidebar-num">12</span><span class="sidebar-link-text">Baca Ketentuan Paket UMKM</span></a><a class="sidebar-link" href="#step-13"><span class="sidebar-num">13</span><span class="sidebar-link-text">Paket UMKM Berhasil Diaktifkan</span></a><a class="sidebar-link" href="#step-14"><span class="sidebar-num">14</span><span class="sidebar-link-text">Buka Informasi Layanan</span></a><a class="sidebar-link" href="#step-15"><span class="sidebar-num">15</span><span class="sidebar-link-text">Pastikan Paket UMKM Aktif</span></a></div></div><div class="sidebar-group"><p class="sidebar-group-title">Penutup</p><div class="sidebar-nav"><a class="sidebar-link" href="#selesai"><span class="sidebar-num"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="m8.9 12.3 2.3 2.3 4.1-4.3"/></svg></span><span class="sidebar-link-text">Selesai & cek hasil</span></a></div></div></nav>
 <div class="drawer-foot"><p class="drawer-foot-title">Butuh bantuan?</p><p>Kendala saat aktivasi? <a href="https://fingerspot.io/contact-us">Customer Care Fingerspot →</a></p></div>
 </aside>
 <div class="home-content">
@@ -675,7 +687,7 @@ body.lightbox-open{overflow:hidden}
 })();
 </script>
 <script>
-/* ===== Animasi scroll: reveal, progress bar, smooth scroll ===== */
+/* ===== Motion system v2: progress, reveal, sliding indicator, smooth scroll ===== */
 (function () {
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.documentElement.classList.add('js-reveal');
@@ -687,8 +699,8 @@ body.lightbox-open{overflow:hidden}
     if (!bar) return;
     var h = document.documentElement.scrollHeight - window.innerHeight;
     var p = h > 0 ? window.scrollY / h : 0;
-    p = Math.max(0, Math.min(1, p));
-    bar.style.transform = 'scaleX(' + p.toFixed(4) + ')';
+    bar.style.transform = 'scaleX(' + Math.max(0, Math.min(1, p)).toFixed(4) + ')';
+    bar.style.opacity = window.scrollY > 8 ? '1' : '0';
     tickingBar = false;
   }
   window.addEventListener('scroll', function () {
@@ -699,11 +711,28 @@ body.lightbox-open{overflow:hidden}
   window.addEventListener('resize', updateBar);
   updateBar();
 
+  /* ---------- Indikator aktif yang slid di sidebar ---------- */
+  var nav = document.getElementById('drawer-nav');
+  var indicator = document.getElementById('rail-indicator');
+  function moveIndicator() {
+    if (!nav || !indicator) return;
+    var active = nav.querySelector('.sidebar-link.is-active');
+    if (!active) { indicator.style.opacity = '0'; return; }
+    var nr = nav.getBoundingClientRect();
+    var ar = active.getBoundingClientRect();
+    indicator.style.height = ar.height + 'px';
+    indicator.style.transform = 'translateY(' + (ar.top - nr.top + nav.scrollTop).toFixed(1) + 'px)';
+    indicator.style.opacity = '1';
+  }
+  if (nav) nav.addEventListener('scroll', moveIndicator, { passive: true });
+  window.addEventListener('resize', moveIndicator);
+
   /* ---------- Reveal saat scroll ---------- */
-  var SEL = '.reveal, .reveal-item, .card, .faq-item, .step, .help, .section-head, .section-title, .step-card, .flow-panel, .prep-grid, .qr-intro, .mini-card, .cover-media-card, .benefit-item, .notice, .site-footer, .faq-title';
-  var els = Array.prototype.slice.call(document.querySelectorAll(SEL));
-  var unique = [];
-  els.forEach(function (el) { if (unique.indexOf(el) === -1) unique.push(el); });
+  var SEL = '.reveal, .reveal-item, .card, .faq-item, .step, .help, .section-head, .section-label, .section-title, .step-card, .flow-panel, .prep-grid, .qr-intro, .mini-card, .cover-media-card, .benefit-item, .notice, .site-footer, .faq-title';
+  var seen = [];
+  Array.prototype.slice.call(document.querySelectorAll(SEL)).forEach(function (el) {
+    if (seen.indexOf(el) === -1) seen.push(el);
+  });
 
   function show(el) {
     var sibs = [];
@@ -713,39 +742,49 @@ body.lightbox-open{overflow:hidden}
       });
     } catch (e) {}
     var idx = sibs.indexOf(el);
-    el.style.transitionDelay = Math.min(idx < 0 ? 0 : idx, 5) * 70 + 'ms';
+    el.style.transitionDelay = Math.min(idx < 0 ? 0 : idx, 4) * 60 + 'ms';
     el.classList.add('in');
     el.classList.add('reveal-item');
   }
 
   if (reduce || !('IntersectionObserver' in window)) {
-    unique.forEach(function (el) { el.classList.add('reveal-item', 'in'); });
+    seen.forEach(function (el) { el.classList.add('reveal-item', 'in'); });
+    moveIndicator();
   } else {
-    unique.forEach(function (el) { el.classList.add('reveal-item'); });
+    seen.forEach(function (el) { el.classList.add('reveal-item'); });
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (e.isIntersecting) { show(e.target); io.unobserve(e.target); }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' });
-    unique.forEach(function (el) { io.observe(el); });
+    }, { threshold: 0.06, rootMargin: '0px 0px -4% 0px' });
+    seen.forEach(function (el) { io.observe(el); });
   }
 
-  /* ---------- Smooth scroll kustom (lebih kerasa & mulus) ---------- */
-  function easeInOutCubic(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+  /* ---------- Smooth scroll kustom ---------- */
+  function easeOutQuint(t) { return 1 - Math.pow(1 - t, 5); }
   function scrollToY(y, done) {
     var start = window.scrollY;
     var diff = y - start;
     if (Math.abs(diff) < 2) { if (done) done(); return; }
-    var dur = Math.min(1150, Math.max(420, Math.abs(diff) * 0.6));
+    var dur = Math.min(900, Math.max(360, Math.abs(diff) * 0.45));
     var t0 = performance.now();
     function step(now) {
       var p = Math.min(1, (now - t0) / dur);
-      var e = easeInOutCubic(p);
-      window.scrollTo(0, start + diff * e);
+      window.scrollTo(0, start + diff * easeOutQuint(p));
       if (p < 1) { window.requestAnimationFrame(step); }
       else if (done) done();
     }
     window.requestAnimationFrame(step);
+  }
+
+  function pulse(el) {
+    if (!el || !el.animate || reduce) return;
+    try {
+      el.animate(
+        [{ boxShadow: '0 0 0 0 rgba(11,143,243,0)' }, { boxShadow: '0 0 0 8px rgba(11,143,243,.16)' }, { boxShadow: '0 0 0 0 rgba(11,143,243,0)' }],
+        { duration: 900, easing: 'cubic-bezier(.19,1,.22,1)' }
+      );
+    } catch (e) {}
   }
 
   document.addEventListener('click', function (ev) {
@@ -757,15 +796,15 @@ body.lightbox-open{overflow:hidden}
     try { target = document.querySelector(href); } catch (e) { return; }
     if (!target) return;
     ev.preventDefault();
-    var offset = 84;
-    var y = target.getBoundingClientRect().top + window.scrollY - offset;
+    var y = target.getBoundingClientRect().top + window.scrollY - 84;
     if (y < 0) y = 0;
     scrollToY(y, function () {
       if (history.replaceState) history.replaceState(null, '', href);
+      pulse(target);
     });
   });
 
-  /* ---------- Parallax halus di hero ---------- */
+  /* ---------- Parallax halus di hero (tanpa fade, biar gak glitchy) ---------- */
   var hero = document.querySelector('.hero-block');
   if (hero && !reduce) {
     var tickingHero = false;
@@ -773,15 +812,19 @@ body.lightbox-open{overflow:hidden}
       if (tickingHero) return;
       tickingHero = true;
       window.requestAnimationFrame(function () {
-        var y = window.scrollY;
-        if (y < 760) {
-          hero.style.transform = 'translateY(' + (y * 0.13).toFixed(1) + 'px)';
-          hero.style.opacity = String(Math.max(0.18, 1 - y / 900));
-        }
+        var y = Math.min(window.scrollY, 520);
+        hero.style.transform = 'translateY(' + (y * 0.07).toFixed(1) + 'px)';
         tickingHero = false;
       });
     }, { passive: true });
   }
+
+  /* ---------- Update indikator tiap animasi scrollspy ---------- */
+  window.addEventListener('scroll', function () {
+    if (!indicator) return;
+    window.requestAnimationFrame(moveIndicator);
+  }, { passive: true });
+  setTimeout(moveIndicator, 300);
 })();
 </script>
 </body>
