@@ -97,8 +97,8 @@ p{text-wrap:pretty}
 .menu-button svg{width:23px;height:23px}
 .drawer-overlay{position:fixed;inset:0;z-index:70;background:rgba(15,23,42,.55);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:opacity .35s ease}
 .drawer-overlay.open{opacity:1;pointer-events:auto}
-.drawer{position:fixed;top:var(--topbar-h,66px);left:0;right:0;z-index:80;width:auto;max-height:0;overflow:hidden;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 12px 30px rgba(15,23,42,.18);display:flex;flex-direction:column;transform:translateY(-110%);opacity:0;pointer-events:none;transition:transform .32s cubic-bezier(.2,.8,.2,1),opacity .25s,max-height .32s ease}
-.drawer.open{transform:translateY(0);opacity:1;pointer-events:auto;max-height:70vh;overflow-y:auto;animation:drawerOpen .32s cubic-bezier(.2,.8,.2,1)}
+.drawer{position:fixed;top:var(--topbar-h,66px);left:0;right:0;z-index:80;width:auto;max-height:0;overflow:hidden;background:#fff;border-bottom:1px solid var(--line);border-radius:0 0 16px 16px;box-shadow:0 12px 30px rgba(15,23,42,.18);display:flex;flex-direction:column;transform:translateY(-110%) scale(.985);transform-origin:top left;opacity:0;pointer-events:none;will-change:transform,opacity;transition:transform .34s cubic-bezier(.22,1,.36,1),opacity .26s ease,max-height .34s cubic-bezier(.22,1,.36,1)}
+.drawer.open{transform:translateY(0) scale(1);opacity:1;pointer-events:auto;max-height:78vh;overflow-y:auto;animation:drawerOpen .34s cubic-bezier(.22,1,.36,1)}
 
 /* Brand header */
 .drawer-brand{position:relative;background:linear-gradient(135deg,#4D8FBC 0%,#3F87B9 55%,#326C97 100%);padding:17px 16px 15px;color:#fff;overflow:clip}
@@ -153,14 +153,10 @@ section[id],div[id].flow-detail,div[id].branch-panel{scroll-margin-top:92px}
 .home-layout{display:grid;grid-template-columns:1fr;gap:0}
 .home-content{min-width:0}
 @media (min-width:768px){
-  .drawer{max-width:520px;box-shadow:0 18px 44px rgba(15,23,42,.20)}
+  .drawer{max-width:520px;border-radius:0 18px 18px 0;border-left:1px solid var(--line);border-right:1px solid var(--line);border-top:1px solid var(--line);box-shadow:0 24px 60px rgba(15,23,42,.20)}
+  .drawer-brand{border-radius:0}
 }
-@media (max-width:1023px){
-  .drawer{position:fixed;top:var(--topbar-h,66px);left:0;right:0;z-index:60;width:auto;max-height:0;overflow:hidden;transform:translateY(-110%);opacity:0;pointer-events:none;transition:transform .32s ease,opacity .25s ease,max-height .32s ease;border-radius:0 0 14px 14px;border:0;border-bottom:1px solid var(--line);box-shadow:0 12px 30px rgba(15,23,42,.18)}
-  .drawer.open{transform:translateY(0);opacity:1;pointer-events:auto;max-height:70vh;overflow-y:auto}
-  .drawer-overlay{position:fixed;inset:0;z-index:55;background:rgba(15,23,42,.4);opacity:0;pointer-events:none;transition:opacity .25s ease}
-  .drawer-overlay.open{opacity:1;pointer-events:auto}
-}
+
 
 /* ---------- Tombol kembali ke atas ---------- */
 .scroll-top-button{position:fixed;right:16px;bottom:16px;z-index:60;width:46px;height:46px;border-radius:12px;border:1px solid var(--line);background:#fff;color:#0879b9;display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 26px rgba(15,23,42,.16);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .2s ease,transform .2s ease,background-color .2s ease}
@@ -960,6 +956,30 @@ body.lightbox-open{overflow:hidden}
   overlay.addEventListener('click', function () { closeDrawer(false); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && drawer.classList.contains('open')) closeDrawer(); });
   drawer.querySelectorAll('a[href^="#"]').forEach(function (a) { a.addEventListener('click', function () { closeDrawer(false); }); });
+})();
+</script>
+<script>
+(function () {
+  var links = Array.prototype.slice.call(document.querySelectorAll('.drawer-nav .sidebar-link[href^="#"]'));
+  var pairs = links.map(function (a) {
+    var t = document.querySelector(a.getAttribute('href'));
+    return t ? { a: a, t: t } : null;
+  }).filter(Boolean);
+  if (!pairs.length) return;
+  function update() {
+    var pos = window.scrollY + 160;
+    var current = pairs[0];
+    pairs.forEach(function (p) { if (p.t.getBoundingClientRect().top + window.scrollY <= pos) current = p; });
+    pairs.forEach(function (p) { p.a.classList.toggle('is-active', p === current); });
+  }
+  var ticking = false;
+  window.addEventListener('scroll', function () {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(function () { update(); ticking = false; });
+  }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
 })();
 </script>
 </body>

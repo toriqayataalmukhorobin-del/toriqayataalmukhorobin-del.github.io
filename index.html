@@ -95,11 +95,11 @@ footer a:hover{text-decoration:underline}
 .menu-button svg{width:23px;height:23px}
 .drawer-overlay{position:fixed;inset:0;z-index:70;background:rgba(15,23,42,.55);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:opacity .35s ease}
 .drawer-overlay.open{opacity:1;pointer-events:auto}
-.drawer{position:fixed;top:var(--topbar-h,66px);left:0;right:0;z-index:80;width:auto;max-height:0;overflow:hidden;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 12px 30px rgba(15,23,42,.18);display:flex;flex-direction:column;transform:translateY(-110%);opacity:0;pointer-events:none;transition:transform .32s cubic-bezier(.2,.8,.2,1),opacity .25s,max-height .32s ease}
-.drawer.open{transform:translateY(0);opacity:1;pointer-events:auto;max-height:70vh;overflow-y:auto;animation:drawerOpen .32s cubic-bezier(.2,.8,.2,1)}
+.drawer{position:fixed;top:var(--topbar-h,66px);left:0;right:0;z-index:80;width:auto;max-height:0;overflow:hidden;background:#fff;border-bottom:1px solid var(--line);border-radius:0 0 16px 16px;box-shadow:0 12px 30px rgba(15,23,42,.18);display:flex;flex-direction:column;transform:translateY(-110%) scale(.985);transform-origin:top left;opacity:0;pointer-events:none;will-change:transform,opacity;transition:transform .34s cubic-bezier(.22,1,.36,1),opacity .26s ease,max-height .34s cubic-bezier(.22,1,.36,1)}
+.drawer.open{transform:translateY(0) scale(1);opacity:1;pointer-events:auto;max-height:78vh;overflow-y:auto;animation:drawerOpen .34s cubic-bezier(.22,1,.36,1)}
 
 /* Brand header */
-.drawer-brand{position:relative;background:linear-gradient(135deg,#4D8FBC 0%,#3F87B9 55%,#326C97 100%);padding:17px 16px 15px;color:#fff;overflow:clip}
+.drawer-brand{position:relative;background:linear-gradient(135deg,#4D8FBC 0%,#3F87B9 55%,#326C97 100%);padding:18px 18px 16px;color:#fff;overflow:clip}
 .drawer-brand::after{content:"";position:absolute;width:190px;height:190px;border-radius:999px;background:rgba(255,255,255,.09);top:-80px;right:-70px;pointer-events:none}
 .drawer-brand-row{position:relative;display:flex;align-items:center;gap:12px;padding-right:46px}
 .drawer-logo-link{display:inline-flex;align-items:center;background:#fff;border-radius:10px;padding:6px 10px;transition:opacity .15s ease,transform .15s ease;box-shadow:0 2px 8px rgba(15,23,42,.12)}
@@ -146,21 +146,37 @@ body.drawer-open{overflow:hidden}
 
 /* ===== Layout beranda: sidebar + konten ===== */
 .home-layout{display:grid;grid-template-columns:1fr;gap:0;position:static;z-index:auto}
-section[id]{scroll-margin-top:92px}
+section[id]{scroll-margin-top:84px}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.drawer-rail-head{display:none}
+.drawer-rail-title{margin:0;font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#0f172a}
+.drawer-rail-sub{margin:7px 0 0;font-size:12px;line-height:1.5;color:#8a99a8}
 .home-content{min-width:0}
 @media (min-width:1024px){
   .menu-button{display:none !important}
   .drawer-overlay{display:none !important}
   .home-layout{display:block}
-  .drawer{position:fixed;top:0;left:0;bottom:0;width:290px;height:100vh;max-height:none;z-index:90;transform:none;visibility:visible;opacity:1;pointer-events:auto;overflow:hidden;box-shadow:2px 0 26px rgba(15,23,42,.10);border:0;border-right:1px solid var(--line);border-radius:0;background:#fff}
-  .drawer-brand{border-radius:0;padding:18px 18px 16px}
-  .drawer-close{display:none}
-  .drawer-nav{flex:1 1 auto;min-height:0;overflow-y:auto}
-  .drawer-foot{flex:0 0 auto}
+
+  /* Rail daftar isi: menyatu mulus dengan topbar, tanpa blok warna di pojok */
+  .drawer{position:fixed;top:0;left:0;bottom:0;width:290px;height:100vh;max-height:none;z-index:30;transform:none;visibility:visible;opacity:1;pointer-events:auto;overflow:hidden;box-shadow:none;border:0;border-right:1px solid var(--line);border-radius:0;background:#fff}
+  .drawer-brand{display:none}
+  .drawer-rail-head{display:block;padding:calc(var(--topbar-h,64px) + 22px) 22px 16px;border-bottom:1px solid #eef2f6;background:linear-gradient(180deg,#f7fbff 0%,#ffffff 100%)}
+  .drawer-nav{flex:1 1 auto;min-height:0;overflow-y:auto;padding:16px 14px 20px;scrollbar-width:thin;scrollbar-color:#d8e2ec transparent}
+  .drawer-foot{flex:0 0 auto;background:#fbfcfe}
   .drawer-nav .sidebar-group,.drawer-nav .sidebar-link{opacity:1 !important;transform:none !important}
-  .topbar-inner{margin-left:290px !important;max-width:none !important;width:auto !important;padding:12px 32px}
-  main{width:auto !important;margin-left:290px !important;max-width:none !important;padding:44px 32px 64px}
+  .sidebar-link{padding:8px 10px 8px 12px;font-size:13px;border-radius:11px}
+  .sidebar-link:hover{transform:translateX(3px)}
+  .sidebar-group-title{margin:14px 8px 8px}
+
+  /* Topbar menyambung ke rail, garis bawahnya mulai dari konten */
+  .topbar{background:#fff;border-bottom:none;box-shadow:none}
+  .topbar-inner{margin-left:290px !important;max-width:none !important;width:auto !important;padding:12px 32px;border-bottom:1px solid var(--line)}
+  .topbar-search input{border-radius:999px;transition:border-color .18s ease,box-shadow .18s ease,background-color .18s ease}
+  .topbar-search input:hover{border-color:#c7dced}
+  main{width:auto !important;margin-left:290px !important;max-width:none !important;padding:0 32px 64px}
   .home-content{max-width:1280px;margin:0 auto}
+  .hero-block{padding:56px 0 48px}
 }
 @media (max-width:1023px){
   .drawer{position:fixed;top:var(--topbar-h,66px);left:0;right:0;z-index:60;width:auto;max-height:0;overflow:hidden;transform:translateY(-110%);opacity:0;pointer-events:none;transition:transform .32s ease,opacity .25s ease,max-height .32s ease;border-radius:0 0 14px 14px;border:0;border-bottom:1px solid var(--line);box-shadow:0 12px 30px rgba(15,23,42,.18)}
@@ -308,6 +324,10 @@ main > *{position:relative;z-index:1}
 <div class="home-layout">
 <div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
 <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Daftar isi beranda" aria-hidden="true">
+<div class="drawer-rail-head">
+<p class="drawer-rail-title">Daftar Isi</p>
+<p class="drawer-rail-sub">Pusat Panduan Fingerspot.io &mdash; 3 panduan lengkap, siap dipakai offline.</p>
+</div>
 <div class="drawer-brand">
 <div class="drawer-brand-row">
 <a class="drawer-wordmark" href="index.html" aria-label="Beranda Panduan Fingerspot.io">fingerspot.io</a>
@@ -567,6 +587,30 @@ main > *{position:relative;z-index:1}
   drawer.querySelectorAll('a[href^="#"]').forEach(function (a) {
     a.addEventListener('click', function () { closeDrawer(false); });
   });
+})();
+</script>
+<script>
+(function () {
+  var links = Array.prototype.slice.call(document.querySelectorAll('.drawer-nav .sidebar-link[href^="#"]'));
+  var pairs = links.map(function (a) {
+    var t = document.querySelector(a.getAttribute('href'));
+    return t ? { a: a, t: t } : null;
+  }).filter(Boolean);
+  if (!pairs.length) return;
+  function update() {
+    var pos = window.scrollY + 160;
+    var current = pairs[0];
+    pairs.forEach(function (p) { if (p.t.getBoundingClientRect().top + window.scrollY <= pos) current = p; });
+    pairs.forEach(function (p) { p.a.classList.toggle('is-active', p === current); });
+  }
+  var ticking = false;
+  window.addEventListener('scroll', function () {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(function () { update(); ticking = false; });
+  }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
 })();
 </script>
 </body>
