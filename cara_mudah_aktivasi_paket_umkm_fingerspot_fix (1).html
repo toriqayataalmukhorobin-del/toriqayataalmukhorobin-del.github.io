@@ -97,8 +97,8 @@ p{text-wrap:pretty}
 .menu-button svg{width:23px;height:23px}
 .drawer-overlay{position:fixed;inset:0;z-index:70;background:rgba(15,23,42,.55);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:opacity .35s ease}
 .drawer-overlay.open{opacity:1;pointer-events:auto}
-.drawer{position:fixed;top:0;left:0;bottom:0;z-index:80;width:min(332px,88vw);background:#fff;border-right:1px solid var(--line);box-shadow:12px 0 44px rgba(15,23,42,.28);display:flex;flex-direction:column;transform:translateX(-110%);opacity:0;pointer-events:none;transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .3s}
-.drawer.open{transform:translateX(0);opacity:1;pointer-events:auto;animation:drawerOpen .45s cubic-bezier(.2,.8,.2,1)}
+.drawer{position:fixed;top:64px;left:0;right:0;z-index:80;width:auto;max-height:0;overflow:hidden;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 12px 30px rgba(15,23,42,.18);display:flex;flex-direction:column;transform:translateY(-110%);opacity:0;pointer-events:none;transition:transform .32s cubic-bezier(.2,.8,.2,1),opacity .25s,max-height .32s ease}
+.drawer.open{transform:translateY(0);opacity:1;pointer-events:auto;max-height:70vh;overflow-y:auto;animation:drawerOpen .32s cubic-bezier(.2,.8,.2,1)}
 
 /* Brand header */
 .drawer-brand{position:relative;background:linear-gradient(135deg,#4D8FBC 0%,#3F87B9 55%,#326C97 100%);padding:17px 16px 15px;color:#fff;overflow:hidden}
