@@ -143,6 +143,23 @@ p{text-wrap:pretty}
 .drawer-foot a:hover{text-decoration:underline}
 body.drawer-open{overflow:hidden}
 
+
+/* ---------- Layout beranda/panduan: sidebar + konten ---------- */
+.home-layout{display:grid;grid-template-columns:1fr;gap:0}
+.home-content{min-width:0}
+@media (min-width:1024px){
+  .home-layout{grid-template-columns:272px minmax(0,1fr);gap:32px;align-items:start}
+  .menu-button{display:none !important}
+  .drawer-overlay{display:none !important}
+  .drawer{position:sticky;top:78px;transform:none;visibility:visible;opacity:1;pointer-events:auto;width:auto;max-height:calc(100vh - 98px);overflow:auto;box-shadow:none;border:1px solid var(--line);border-radius:14px;background:#fff}
+}
+@media (max-width:1023px){
+  .drawer{position:fixed;top:64px;left:0;right:0;z-index:60;width:auto;max-height:0;overflow:hidden;transform:translateY(-110%);opacity:0;pointer-events:none;transition:transform .32s ease,opacity .25s ease,max-height .32s ease;border-radius:0 0 14px 14px;border:0;border-bottom:1px solid var(--line);box-shadow:0 12px 30px rgba(15,23,42,.18)}
+  .drawer.open{transform:translateY(0);opacity:1;pointer-events:auto;max-height:70vh;overflow-y:auto}
+  .drawer-overlay{position:fixed;inset:0;z-index:55;background:rgba(15,23,42,.4);opacity:0;pointer-events:none;transition:opacity .25s ease}
+  .drawer-overlay.open{opacity:1;pointer-events:auto}
+}
+
 /* ---------- Tombol kembali ke atas ---------- */
 .scroll-top-button{position:fixed;right:16px;bottom:16px;z-index:60;width:46px;height:46px;border-radius:12px;border:1px solid var(--line);background:#fff;color:#0879b9;display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 26px rgba(15,23,42,.16);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .2s ease,transform .2s ease,background-color .2s ease}
 .scroll-top-button svg{width:20px;height:20px}
@@ -259,6 +276,8 @@ body.lightbox-open{overflow:hidden}
 <button class="shrink-0 rounded-xl bg-slate-950 px-3 py-2 text-xs font-semibold text-white transition hover:bg-slate-800 sm:px-4 sm:text-sm" onclick="window.print()">Cetak / Simpan PDF</button>
 </div>
 </div>
+<main class="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:py-10">
+<div class="home-layout">
 <div class="drawer-overlay no-print" id="drawer-overlay" aria-hidden="true"></div>
 <aside class="drawer no-print" id="drawer" role="dialog" aria-modal="true" aria-label="Daftar isi panduan" aria-hidden="true">
 <div class="drawer-brand">
@@ -271,7 +290,7 @@ body.lightbox-open{overflow:hidden}
 <nav class="drawer-nav" id="drawer-nav" aria-label="Daftar isi panduan"><div class="sidebar-group"><p class="sidebar-group-title">Mulai</p><div class="sidebar-nav"><a class="sidebar-link" href="#cover"><span class="sidebar-num"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 11.2 12 4l8 7.2"/><path d="M6.6 9.8V20h10.8V9.8"/></svg></span><span class="sidebar-link-text">Ringkasan panduan</span></a><a class="sidebar-link" href="#panduan-aktivasi"><span class="sidebar-num"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9.5 6H20M9.5 12H20M9.5 18H20"/><path d="M4 6h.01M4 12h.01M4 18h.01"/></svg></span><span class="sidebar-link-text">Panduan & alur aktivasi</span></a><a class="sidebar-link" href="#persiapan"><span class="sidebar-num"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="6" y="4.5" width="12" height="16" rx="2"/><path d="m10.2 12.6 1.9 1.9 3.6-4"/></svg></span><span class="sidebar-link-text">Persiapan sebelum mulai</span></a><a class="sidebar-link" href="#scan-qr"><span class="sidebar-num"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="4" y="4" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1"/><path d="M14 14h2.3v2.3H14z" fill="currentColor" stroke="none"/><path d="M17.8 17.8H20v2.2h-2.2z" fill="currentColor" stroke="none"/></svg></span><span class="sidebar-link-text">Scan QR pada kemasan</span></a></div></div><div class="sidebar-group"><p class="sidebar-group-title">Langkah Aktivasi</p><div class="sidebar-nav"><a class="sidebar-link" href="#step-1"><span class="sidebar-num">01</span><span class="sidebar-link-text">Mulai Aktivasi Garansi</span></a><a class="sidebar-link" href="#step-2"><span class="sidebar-num">02</span><span class="sidebar-link-text">Masukkan Serial Number</span></a><a class="sidebar-link" href="#step-3"><span class="sidebar-num">03</span><span class="sidebar-link-text">Buat Akun Baru</span></a><a class="sidebar-link" href="#step-4"><span class="sidebar-num">04</span><span class="sidebar-link-text">Lengkapi Data Akun</span></a><a class="sidebar-link" href="#step-5"><span class="sidebar-num">05</span><span class="sidebar-link-text">Garansi Berhasil Diaktifkan</span></a><a class="sidebar-link" href="#step-6"><span class="sidebar-num">06</span><span class="sidebar-link-text">Unduh Fingerspot.io Desktop</span></a><a class="sidebar-link" href="#step-7"><span class="sidebar-num">07</span><span class="sidebar-link-text">Unduh Fingerspot.io Mobile</span></a><a class="sidebar-link" href="#step-8"><span class="sidebar-num">08</span><span class="sidebar-link-text">Lengkapi Data Perangkat</span></a><a class="sidebar-link" href="#step-9"><span class="sidebar-num">09</span><span class="sidebar-link-text">Setujui Ketentuan Perangkat</span></a><a class="sidebar-link" href="#step-10"><span class="sidebar-num">10</span><span class="sidebar-link-text">Hubungkan Tanpa Paket</span></a><a class="sidebar-link" href="#step-11"><span class="sidebar-num">11</span><span class="sidebar-link-text">Aktifkan Paket UMKM</span></a><a class="sidebar-link" href="#step-12"><span class="sidebar-num">12</span><span class="sidebar-link-text">Baca Ketentuan Paket UMKM</span></a><a class="sidebar-link" href="#step-13"><span class="sidebar-num">13</span><span class="sidebar-link-text">Paket UMKM Berhasil Diaktifkan</span></a><a class="sidebar-link" href="#step-14"><span class="sidebar-num">14</span><span class="sidebar-link-text">Buka Informasi Layanan</span></a><a class="sidebar-link" href="#step-15"><span class="sidebar-num">15</span><span class="sidebar-link-text">Pastikan Paket UMKM Aktif</span></a></div></div><div class="sidebar-group"><p class="sidebar-group-title">Penutup</p><div class="sidebar-nav"><a class="sidebar-link" href="#selesai"><span class="sidebar-num"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="m8.9 12.3 2.3 2.3 4.1-4.3"/></svg></span><span class="sidebar-link-text">Selesai & cek hasil</span></a></div></div></nav>
 <div class="drawer-foot"><p class="drawer-foot-title">Butuh bantuan?</p><p>Kendala saat aktivasi? Hubungi <a href="#selesai">Customer Care Fingerspot →</a></p></div>
 </aside>
-<main class="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:py-10">
+<div class="home-content">
 <!-- COVER -->
 <section class="cover print-cover" id="cover" aria-label="Ringkasan panduan">
 <div class="cover-stack">
@@ -535,6 +554,8 @@ body.lightbox-open{overflow:hidden}
       Panduan Aktivasi FREE Paket UMKM Fingerspot.io<br/>
       Tampilan, kuota, fitur, dan ketentuan dapat berubah mengikuti pembaruan layanan Fingerspot.io.
     </footer>
+</div>
+</div>
 </main>
 <button aria-label="Kembali ke atas" class="scroll-top-button" id="scroll-top-button" type="button">
 <svg aria-hidden="true" fill="none" viewBox="0 0 24 24"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"></path></svg>
