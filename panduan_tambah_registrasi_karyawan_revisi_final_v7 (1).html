@@ -705,10 +705,16 @@ body.lightbox-open{overflow:hidden}
     return t ? { a: a, t: t } : null;
   }).filter(Boolean);
   if (!pairs.length) return;
+  function visible(el) { var r = el.getBoundingClientRect(); return r.height > 0 && r.width > 0; }
   function update() {
     var pos = window.scrollY + 160;
-    var current = pairs[0];
-    pairs.forEach(function (p) { if (p.t.getBoundingClientRect().top + window.scrollY <= pos) current = p; });
+    var current = null;
+    pairs.forEach(function (p) {
+      if (!visible(p.t)) return;
+      if (!current) { current = p; return; }
+      if (p.t.getBoundingClientRect().top + window.scrollY <= pos) current = p;
+    });
+    if (!current) return;
     pairs.forEach(function (p) { p.a.classList.toggle('is-active', p === current); });
   }
   var ticking = false;
