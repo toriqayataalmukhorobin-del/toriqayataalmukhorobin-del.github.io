@@ -25,7 +25,7 @@ aside a:hover{background:var(--bg);color:var(--ink)}aside a.on{background:var(--
 .dd em{font-style:normal;letter-spacing:0;background:var(--soft);color:var(--brand);border-radius:999px;padding:1px 8px;margin-left:6px}.dd svg{transition:transform .2s}.dd[aria-expanded=true] svg{transform:rotate(180deg)}
 .ddp{display:none;margin:0 4px}.ddp.open{display:block}.ddp input{width:calc(100% - 12px);margin:6px 6px 8px;height:36px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:0 12px;font:inherit;font-size:.82rem;outline:none}.ddp input:focus{border-color:var(--brand)}
 #sl{max-height:42vh;overflow:auto}#sl a{font-size:.84rem;align-items:flex-start}#sl a svg{margin-top:3px}.dz{padding:8px 12px;font-size:.82rem;color:var(--mut)}
-.help{margin-top:26px;border:1px solid var(--line);background:var(--soft);border-radius:14px;padding:14px;font-size:.85rem}.help b{color:var(--brand)}.help-illustration{display:block;width:100%;max-width:156px;height:auto;margin:0 auto 12px;object-fit:contain}
+.help{margin-top:26px;border:1px solid var(--line);background:var(--soft);border-radius:14px;padding:14px;font-size:.85rem}.help{text-align:center}.help-title{margin:0 0 12px;font-size:1rem;font-weight:700;color:var(--ink)}.help-link{display:block;padding:8px 4px;font-weight:800;color:var(--brand2);border-radius:8px;transition:background-color .18s ease,color .18s ease}.help-link:hover{background:#d9edff;color:#075985}.help-link:focus-visible{outline:2px solid var(--brand);outline-offset:3px}.help-illustration{display:block;width:100%;max-width:156px;height:auto;margin:0 auto 12px;object-fit:contain}
 main{min-width:0;padding:0 clamp(18px,4vw,56px) 40px}
 .hero{position:relative;margin:0 calc(-1*clamp(18px,4vw,56px));padding:64px clamp(18px,4vw,56px) 44px;background:radial-gradient(900px 340px at 85% -10%,rgba(14,165,233,.10),transparent 60%),radial-gradient(700px 300px at 0% 0%,rgba(11,143,243,.14),transparent 60%)}
 .eyebrow{font-size:.72rem;letter-spacing:.18em;font-weight:800;color:var(--brand)}
@@ -78,7 +78,7 @@ h1 span{background:none;color:var(--brand);-webkit-text-fill-color:var(--brand)}
 <a href="#bantuan" data-s="bantuan"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.5 7.2L4 20l1-4.5A8 8 0 1 1 21 12z"/></svg>Butuh Bantuan</a>
 <button class="dd" id="ddb" aria-expanded="false" aria-controls="ddp"><span>PANDUAN <em id="dn"></em></span><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button>
 <div class="ddp" id="ddp"><input id="sf" type="search" placeholder="Filter panduan…" aria-label="Filter daftar panduan" autocomplete="off"/><div id="sl"></div></div>
-<div class="help"><img class="help-illustration" src="assets/images/kantor-bantuan.png" alt="Ilustrasi kantor" width="1024" height="1024"/>Kendala? <b><a href="https://fingerspot.io/contact-us" target="_blank" rel="noopener">Hubungi Fingerspot.io →</a></b></div></aside>
+<div class="help"><p class="help-title">Kendala?</p><img class="help-illustration" src="assets/images/kantor-bantuan.png" alt="Ilustrasi kantor" width="1024" height="1024"/><a class="help-link" href="https://fingerspot.io/contact-us" target="_blank" rel="noopener">Hubungi Kami</a></div></aside>
 <main>
 <section class="hero" id="ringkasan"><div class="eyebrow">FINGERSPOT.IO · PUSAT PANDUAN</div>
 <h1>Panduan Pengguna <span>Fingerspot.io</span></h1>
