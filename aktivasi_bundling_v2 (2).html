@@ -285,7 +285,7 @@ body.lightbox-open{overflow:hidden}
 @media (prefers-reduced-motion:reduce){.cover-media-card img,.cover-service-image{animation:none !important}}
 
 
-    /* ===== Komponen khusus Panduan Bundling (di-reskin agar identik dgn panduan lain) ===== */
+/* ===== Komponen khusus Panduan Bundling (di-reskin agar identik dgn panduan lain) ===== */
 
     /* Cover / hero */
     .hero{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 8px 26px rgba(15,23,42,.055);overflow:hidden}
@@ -448,6 +448,16 @@ body.lightbox-open{overflow:hidden}
   .cover-copy,.cover-flow{padding:8mm}
   .cover-art-card{max-width:100%;border-radius:5mm;box-shadow:none;break-inside:avoid}
 }
+
+/* Daftar langkah: satu grid menyatu, bukan kartu-kartu terpisah */
+.quick-nav .navlinks{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;margin-top:18px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.quick-nav .navlinks a{min-height:76px;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:4px;padding:13px 14px;border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);border-radius:0;background:#fff;box-shadow:none;text-decoration:none;color:inherit;transition:background-color .18s ease}
+.quick-nav .navlinks a:hover{background:#f4faff;box-shadow:none;transform:none}
+.quick-nav .navlinks a span{color:#0787c9;font-size:11px;font-weight:800}
+.quick-nav .navlinks a strong{font-size:12px;line-height:1.4}
+@media (max-width:900px){.quick-nav .navlinks{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:640px){.quick-nav .navlinks{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media print{.quick-nav .navlinks{grid-template-columns:repeat(4,1fr) !important}}
 </style>
 </head>
 <body>

@@ -284,6 +284,15 @@ body.lightbox-open{overflow:hidden}
 .cover-media-card img,.cover-service-image{animation:floatY 4.5s ease-in-out infinite}
 @media (prefers-reduced-motion:reduce){.cover-media-card img,.cover-service-image{animation:none !important}}
 
+
+/* ===== Komponen khusus panduan aktivasi UMKM ===== */
+/* Daftar langkah: satu grid menyatu, bukan kartu-kartu terpisah */
+.flow-grid{margin-top:16px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.flow-item{padding:14px;border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);border-radius:0;min-height:74px;background:#fff;box-shadow:none}
+.flow-item:hover{background:#f8fbff;box-shadow:inset 0 0 0 1px #93c5fd;transform:none}
+@media (max-width:767px){.flow-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1024px){.flow-grid{grid-template-columns:repeat(5,1fr)}}
+@media print{.flow-grid{grid-template-columns:repeat(4,1fr) !important}}
 </style>
 </head>
 <body class="antialiased">
