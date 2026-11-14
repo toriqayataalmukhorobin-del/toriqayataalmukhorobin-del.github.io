@@ -173,6 +173,12 @@ main>section,main>footer{flex-shrink:0}
 #bantuan{margin-top:auto;padding-top:48px}
 }
 @media screen and (max-width:600px){#bantuan{padding-top:30px}}
+
+/* Grid dan scrollbar tidak berubah mendadak ketika zoom atau filter berganti. */
+@media screen and (min-width:901px){html{scrollbar-gutter:stable}}
+@media screen{.card,.vc{min-width:0}.search,.search input{min-width:0}}
+@media screen and (min-width:1280px){.grid,.vgrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media screen and (max-width:900px){aside{height:calc(100svh - var(--header-height))}}
 </style></head><body>
 <header class="top"><button class="burger" id="bg" aria-label="Buka menu" aria-expanded="false" aria-controls="sb"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button><img alt="Fingerspot.io" class="h-9 w-auto object-contain sm:h-10" src="assets/images/fingerspot-logo.png" width="500" height="150" fetchpriority="high" decoding="async"/><div class="sp"></div>
 <label class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" enterkeyhint="search" placeholder="Ketik untuk mencari" aria-label="Cari panduan" autocomplete="off"/></label></header>
@@ -218,7 +224,8 @@ ui.dropdownButton.onclick=()=>{const o=ui.dropdown.classList.toggle('open');ui.d
 function draw({animate=true}={}){const k=ui.search.value.trim().toLowerCase();
 const L=G.filter(g=>(tag==='Semua'||g.tags.includes(tag))&&(g.title+' '+g.desc+' '+g.tags.join(' ')).toLowerCase().includes(k));
 if(!ui.chips.children.length)ui.chips.innerHTML=tags.map(t=>`<button class="chip ${t===tag?'on':''}" data-t="${esc(t)}">${esc(t)}</button>`).join('')+`<span class="count">${L.length} dari ${G.length} panduan</span>`;
-const previousPositions=animate&&!motionPreference.matches?new Map(cards.filter(el=>!el.hidden).map(el=>[el,el.getBoundingClientRect()])):new Map();
+if(!animate)cards.forEach(card=>elementMotion.get(card)?.cancel());
+const previousPositions=animate&&!motionPreference.matches?new Map(cards.filter(el=>!el.hidden).map(el=>[el,{left:el.offsetLeft,top:el.offsetTop}])):new Map();
 if(!ui.grid.children.length)ui.grid.innerHTML=G.map(g=>`<a class="card" href="${esc(g.href)}"><div class="th"><img alt="" loading="lazy" decoding="async" width="1440" height="900" src="${g.img}"/></div><div class="cb"><div class="card-labels"><div class="ic">${ic(g.icon)}</div><div class="tags">${g.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div></div><h3>${esc(g.title)}</h3><p>${esc(g.desc)}</p><div class="meta"><span class="m"><svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>${g.steps} langkah</span><span class="m"><svg viewBox="0 0 24 24"><path d="M6 9V3h12v6M6 18H4v-8h16v8h-2M6 14h12v7H6z"/></svg>Bisa dicetak</span></div><div class="go">Buka panduan <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div></a>`).join('');
 if(!cards.length){cards=[...ui.grid.children];chipButtons=[...ui.chips.querySelectorAll('[data-t]')];ui.count=ui.chips.querySelector('.count');}
 ui.count.textContent=`${L.length} dari ${G.length} panduan`;
@@ -229,20 +236,19 @@ cards.forEach((card,index)=>{
  card.hidden=!visible.has(G[index]);
  if(card.hidden){motionObserver?.unobserve(card);elementMotion.get(card)?.cancel();}
 });
-const positions=animate&&!motionPreference.matches?new Map(cards.filter(card=>!card.hidden).map(card=>[card,card.getBoundingClientRect()])):new Map();
+const positions=animate&&!motionPreference.matches?new Map(cards.filter(card=>!card.hidden).map(card=>[card,{left:card.offsetLeft,top:card.offsetTop}])):new Map();
 positions.forEach((after,card)=>{
  const before=previousPositions.get(card);
  if(entering.has(card)){revealedMotion.add(card);motionObserver?.unobserve(card);playMotion(card,[{opacity:.25,translate:'0 18px',scale:'.985'},{opacity:1,translate:'0 0',scale:'1'}],{duration:420});}
- else if(before&&(Math.abs(before.left-after.left)>1||Math.abs(before.top-after.top)>1))playMotion(card,[{translate:`${before.left-after.left}px ${before.top-after.top}px`},{translate:'0 0'}],{duration:420});
+ else if(before&&(Math.abs(before.left-after.left)>1||Math.abs(before.top-after.top)>1)){
+ const dx=before.left-after.left,dy=before.top-after.top;
+ if(Math.hypot(dx,dy)<=240)playMotion(card,[{translate:`${dx}px ${dy}px`},{translate:'0 0'}],{duration:300});
+ else playMotion(card,[{opacity:.6,translate:'0 10px'},{opacity:1,translate:'0 0'}],{duration:240});
+}
 });
 ui.empty.style.display=L.length?'none':'block';queueNavigation();observeMotion(document.querySelectorAll('#g .card:not([hidden])'))}
 ui.chips.addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(b){tag=b.dataset.t;draw()}});
-let searching=false;
-ui.search.addEventListener('input',()=>{
- draw({animate:false});const hasQuery=Boolean(ui.search.value.trim());
- if(hasQuery&&!searching){const section=ui.guides;if(section.getBoundingClientRect().top>innerHeight*.6)section.scrollIntoView({behavior:motionPreference.matches?'instant':'smooth',block:'start'});}
- searching=hasQuery;
-});
+ui.search.addEventListener('input',()=>draw({animate:false}));
 // Enter tetap menampilkan hasil pencarian di landing page.
 ui.search.addEventListener('keydown',event=>{
  if(event.key!=='Enter'||event.isComposing||event.keyCode===229)return;
@@ -254,7 +260,7 @@ const mobileMenu=matchMedia('(max-width:900px)');
 function setMenu(open,returnFocus=true){
  open=Boolean(open&&mobileMenu.matches);
  ui.sidebar.classList.toggle('open',open);ui.backdrop.classList.toggle('open',open);document.body.classList.toggle('menu-open',open);
- ui.search.inert=open;document.querySelector('main').inert=open;if(!open&&returnFocus)elementMotion.get(ui.sidebar)?.cancel();
+ ui.search.inert=open;document.querySelector('main').inert=open;if(!open){elementMotion.get(ui.sidebar)?.cancel();ui.sidebar.querySelectorAll('[data-s]').forEach(link=>elementMotion.get(link)?.cancel());}
  ui.burger.setAttribute('aria-expanded',String(open));ui.burger.setAttribute('aria-label',open?'Tutup menu':'Buka menu');
  if(mobileMenu.matches)ui.sidebar.inert=!open;else ui.sidebar.inert=false;
  if(open){
@@ -270,26 +276,27 @@ mobileMenu.addEventListener('change',()=>setMenu(false,false));
 addEventListener('keydown',event=>{
  const typing=event.target.matches('input,textarea,[contenteditable="true"]');
  if(event.key==='/'&&!typing){event.preventDefault();ui.search.focus();}
- if(event.key==='Escape'){if(ui.sidebar.classList.contains('open')){setMenu(false);return;}ui.search.value='';ui.search.blur();searching=false;draw({animate:false});}
+ if(event.key==='Escape'){if(ui.sidebar.classList.contains('open')){setMenu(false);return;}ui.search.value='';ui.search.blur();draw({animate:false});}
  if(event.key==='Tab'&&mobileMenu.matches&&ui.sidebar.classList.contains('open')){
   const nodes=[ui.burger,...ui.sidebar.querySelectorAll('a,button,input')].filter(el=>el.getClientRects().length);
   const first=nodes[0],last=nodes[nodes.length-1];
   if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
  }
 });
-setMenu(false,false);
 const links=[...document.querySelectorAll('[data-s]')];
 const sections=links.map(link=>document.getElementById(link.dataset.s));
 let navFrame=0,currentSection='';
 function updateNavigation(){
  navFrame=0;const edge=document.querySelector('.top').offsetHeight+70;
  let active=sections[0];for(const section of sections){if(section.getBoundingClientRect().top<=edge)active=section;}
- if(scrollY+innerHeight>=document.documentElement.scrollHeight-3)active=sections[sections.length-1];
+ if(scrollY>2&&scrollY+innerHeight>=document.documentElement.scrollHeight-3)active=sections[sections.length-1];
  if(active.id===currentSection)return;currentSection=active.id;
  links.forEach(link=>{const on=link.dataset.s===active.id;link.classList.toggle('on',on);if(on)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');});
 }
 function queueNavigation(){if(!navFrame)navFrame=requestAnimationFrame(updateNavigation);}
-addEventListener('scroll',queueNavigation,{passive:true});addEventListener('resize',queueNavigation,{passive:true});
+addEventListener('scroll',queueNavigation,{passive:true});
+addEventListener('resize',()=>{cards.forEach(card=>elementMotion.get(card)?.cancel());queueNavigation();},{passive:true});
+if('ResizeObserver' in window){const layoutObserver=new ResizeObserver(queueNavigation);layoutObserver.observe(document.querySelector('main'));layoutObserver.observe(document.querySelector('.top'));}
 /* Satu kotak video per panduan. Isi field "video" (link YouTube / Vimeo / .mp4) pada entri panduan di daftar G agar kotaknya aktif; dur = durasi (opsional). */
 const V=G.map(g=>({title:'Video: '+g.title,desc:g.desc,thumb:g.img,url:g.video||'',dur:g.dur||''}));
 const embed=u=>{let m=u.match(/(?:youtu\.be\/|[?&]v=|embed\/)([\w-]{11})/);if(m)return`<iframe src="https://www.youtube.com/embed/${m[1]}?autoplay=1&rel=0" allow="autoplay;encrypted-media;fullscreen" allowfullscreen></iframe>`;
@@ -326,11 +333,13 @@ motionPreference.addEventListener('change',()=>{if(motionPreference.matches){run
 addEventListener('beforeprint',()=>runningMotion.forEach(animation=>animation.finish()));
 document.addEventListener('visibilitychange',()=>{if(document.hidden)runningMotion.forEach(animation=>animation.finish());});
 
+setMenu(false,false);
 draw();
 observeMotion(document.querySelectorAll('.sec > h2, .sec > p, .st, .vc, .contact'));
 playMotion(document.querySelector('.hero h1'),[{translate:'0 16px',opacity:.65},{translate:'0 0',opacity:1}],{duration:650});
 playMotion(document.querySelector('.hero .lead'),[{translate:'0 12px',opacity:.5},{translate:'0 0',opacity:1}],{duration:560,delay:80});
 playMotion(document.querySelector('.hero .cta'),[{translate:'0 10px',opacity:.6},{translate:'0 0',opacity:1}],{duration:480,delay:150});
 document.querySelectorAll('.hero .pill').forEach((pill,index)=>playMotion(pill,[{translate:'0 8px',opacity:.6},{translate:'0 0',opacity:1}],{duration:420,delay:100+index*50}));
+addEventListener('pageshow',event=>{if(event.persisted){setMenu(false,false);draw({animate:false});}queueNavigation();});
 queueNavigation();
 </script></body></html>
