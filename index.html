@@ -166,7 +166,7 @@ body{background-attachment:scroll}
 }
 </style></head><body>
 <header class="top"><button class="burger" id="bg" aria-label="Buka menu" aria-expanded="false" aria-controls="sb"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button><img alt="Fingerspot.io" class="h-9 w-auto object-contain sm:h-10" src="assets/images/fingerspot-logo.png" width="500" height="150" fetchpriority="high" decoding="async"/><div class="sp"></div>
-<label class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" placeholder="Ketik untuk mencari" aria-label="Cari panduan" autocomplete="off"/></label></header>
+<label class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" enterkeyhint="go" placeholder="Ketik untuk mencari" aria-label="Cari panduan" autocomplete="off"/></label></header>
 <div class="layout">
 <div class="menu-backdrop" id="menu-backdrop" aria-hidden="true"></div><aside id="sb"><h6>BERANDA</h6>
 <a href="#ringkasan" data-s="ringkasan"><svg viewBox="0 0 24 24"><path d="M3 11 12 3l9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Ringkasan</a>
@@ -233,6 +233,15 @@ ui.search.addEventListener('input',()=>{
  draw({animate:false});const hasQuery=Boolean(ui.search.value.trim());
  if(hasQuery&&!searching){const section=ui.guides;if(section.getBoundingClientRect().top>innerHeight*.6)section.scrollIntoView({behavior:motionPreference.matches?'instant':'smooth',block:'start'});}
  searching=hasQuery;
+});
+// Enter membuka hasil teratas yang sedang cocok dengan pencarian dan filter.
+ui.search.addEventListener('keydown',event=>{
+ if(event.key!=='Enter'||event.isComposing||event.keyCode===229)return;
+ event.preventDefault();
+ if(!ui.search.value.trim())return;
+ draw({animate:false});
+ const firstResult=cards.find(card=>!card.hidden);
+ if(firstResult)window.location.assign(firstResult.href);
 });
 const mobileMenu=matchMedia('(max-width:900px)');
 function setMenu(open,returnFocus=true){
