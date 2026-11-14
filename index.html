@@ -154,6 +154,16 @@ aside>h6,aside>a,aside>.dd,aside>.ddp{flex-shrink:0}aside>.help{margin-top:auto}
 .card:hover .ic,.card:focus-visible .ic{transform:translateY(-2px);background:#d9edff}
 @media(hover:none){.cta:hover svg,.card:hover .ic{transform:none}}
 @media(prefers-reduced-motion:reduce){.cta:hover,.cta:focus-visible,.cta:hover svg,.cta:focus-visible svg,.card:hover .ic,.card:focus-visible .ic{transform:none}}
+
+@media(max-width:600px){
+body{background-attachment:scroll}
+.hero{padding-top:22px;padding-bottom:20px}
+.hero .lead{font-size:15px}
+.grid,.vgrid,.steps{min-width:0}
+.top .search input,.ddp input{font-size:16px}
+.sidebar-link,.help-link{touch-action:manipulation}
+.sec{scroll-margin-top:0}
+}
 </style></head><body>
 <header class="top"><button class="burger" id="bg" aria-label="Buka menu" aria-expanded="false" aria-controls="sb"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button><img alt="Fingerspot.io" class="h-9 w-auto object-contain sm:h-10" src="assets/images/fingerspot-logo.png" width="500" height="150" fetchpriority="high" decoding="async"/><div class="sp"></div>
 <label class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" placeholder="Ketik untuk mencari" aria-label="Cari panduan" autocomplete="off"/></label></header>
