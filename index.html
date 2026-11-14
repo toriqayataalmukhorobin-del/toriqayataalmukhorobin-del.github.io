@@ -164,6 +164,15 @@ body{background-attachment:scroll}
 .sidebar-link,.help-link{touch-action:manipulation}
 .sec{scroll-margin-top:0}
 }
+
+/* Bantuan dan footer tetap di dasar layar saat browser di-zoom out. */
+@media screen{
+.layout{min-height:calc(100vh - var(--header-height));min-height:calc(100dvh - var(--header-height))}
+main{display:flex;flex-direction:column;min-height:calc(100vh - var(--header-height));min-height:calc(100dvh - var(--header-height))}
+main>section,main>footer{flex-shrink:0}
+#bantuan{margin-top:auto;padding-top:48px}
+}
+@media screen and (max-width:600px){#bantuan{padding-top:30px}}
 </style></head><body>
 <header class="top"><button class="burger" id="bg" aria-label="Buka menu" aria-expanded="false" aria-controls="sb"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button><img alt="Fingerspot.io" class="h-9 w-auto object-contain sm:h-10" src="assets/images/fingerspot-logo.png" width="500" height="150" fetchpriority="high" decoding="async"/><div class="sp"></div>
 <label class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" enterkeyhint="search" placeholder="Ketik untuk mencari" aria-label="Cari panduan" autocomplete="off"/></label></header>
