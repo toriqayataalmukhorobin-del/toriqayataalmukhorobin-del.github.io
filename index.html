@@ -35,7 +35,7 @@ main{min-width:0;padding:0 clamp(18px,4vw,56px) 40px}
 h1{margin:12px 0 0;font-size:clamp(2rem,5vw,3.4rem);line-height:1.08;font-weight:900;letter-spacing:-.03em}h1 span{color:var(--brand)}
 .lead{max-width:640px;margin:16px 0 0;color:var(--mut);font-size:1.05rem}
 .pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.pill{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 14px;font-size:.8rem;font-weight:600}.pill b{color:var(--brand)}
-.cta{display:inline-flex;align-items:center;gap:8px;margin-top:26px;background:linear-gradient(90deg,var(--brand),var(--brand2));color:#fff;border-radius:12px;padding:12px 20px;font-weight:700;box-shadow:0 12px 24px -12px rgba(11,143,243,.7)}
+.cta{display:inline-flex;align-items:center;gap:8px;margin-top:26px;background:#7dd3fc;color:#0c4a6e;border-radius:12px;padding:12px 20px;font-weight:700;box-shadow:none}
 .sec{margin-top:48px}.sec>.k{font-size:.72rem;letter-spacing:.18em;font-weight:800;color:var(--mut);padding-bottom:8px;border-bottom:2px solid var(--brand);display:inline-block}
 .sec h2{margin:14px 0 4px;font-size:1.5rem;font-weight:800;letter-spacing:-.02em}.sec>p{margin:0;color:var(--mut);font-size:.92rem}
 .bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:20px 0 4px}.chip{border:1px solid var(--line);background:var(--card);color:var(--mut);border-radius:999px;padding:6px 14px;font:600 .82rem Inter;cursor:pointer}
@@ -144,6 +144,16 @@ aside>h6,aside>a,aside>.dd,aside>.ddp{flex-shrink:0}aside>.help{margin-top:auto}
 :focus-visible{outline:2px solid var(--brand2);outline-offset:4px}
 @media(prefers-reduced-motion:reduce){.menu-backdrop,aside{transition:none!important}}
 @media print{.menu-backdrop{display:none!important}body.menu-open{overflow:visible}}
+
+/* Tombol biru muda polos dan respons gerak yang mengikuti interaksi. */
+.cta:hover{background:#bae6fd;box-shadow:none}
+.cta:focus-visible{outline:3px solid #0369a1;outline-offset:4px}
+.cta svg{transition:transform 280ms var(--ease-ui)}
+.cta:hover svg,.cta:focus-visible svg{transform:translateX(4px)}
+.card .ic{transition:transform 320ms var(--ease-ui),background-color 220ms ease}
+.card:hover .ic,.card:focus-visible .ic{transform:translateY(-2px);background:#d9edff}
+@media(hover:none){.cta:hover svg,.card:hover .ic{transform:none}}
+@media(prefers-reduced-motion:reduce){.cta:hover,.cta:focus-visible,.cta:hover svg,.cta:focus-visible svg,.card:hover .ic,.card:focus-visible .ic{transform:none}}
 </style></head><body>
 <header class="top"><button class="burger" id="bg" aria-label="Buka menu" aria-expanded="false" aria-controls="sb"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button><img alt="Fingerspot.io" class="h-9 w-auto object-contain sm:h-10" src="assets/images/fingerspot-logo.png" width="500" height="150" fetchpriority="high" decoding="async"/><div class="sp"></div>
 <label class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" placeholder="Ketik untuk mencari" aria-label="Cari panduan" autocomplete="off"/></label></header>
@@ -221,7 +231,10 @@ function setMenu(open,returnFocus=true){
  ui.search.inert=open;document.querySelector('main').inert=open;if(!open&&returnFocus)elementMotion.get(ui.sidebar)?.cancel();
  ui.burger.setAttribute('aria-expanded',String(open));ui.burger.setAttribute('aria-label',open?'Tutup menu':'Buka menu');
  if(mobileMenu.matches)ui.sidebar.inert=!open;else ui.sidebar.inert=false;
- if(open){playMotion(ui.sidebar,[{translate:'-24px 0',opacity:.7},{translate:'0 0',opacity:1}],{duration:360});}
+ if(open){
+  playMotion(ui.sidebar,[{translate:'-16px 0',opacity:.8},{translate:'0 0',opacity:1}],{duration:340});
+  ui.sidebar.querySelectorAll('[data-s]').forEach((link,index)=>playMotion(link,[{translate:'-10px 0',opacity:.4},{translate:'0 0',opacity:1}],{duration:340,delay:40+index*35}));
+ }
  else if(returnFocus&&mobileMenu.matches)ui.burger.focus();
 }
 ui.burger.onclick=()=>setMenu(!ui.sidebar.classList.contains('open'));
@@ -292,5 +305,6 @@ observeMotion(document.querySelectorAll('.sec > h2, .sec > p, .st, .vc, .contact
 playMotion(document.querySelector('.hero h1'),[{translate:'0 16px',opacity:.65},{translate:'0 0',opacity:1}],{duration:650});
 playMotion(document.querySelector('.hero .lead'),[{translate:'0 12px',opacity:.5},{translate:'0 0',opacity:1}],{duration:560,delay:80});
 playMotion(document.querySelector('.hero .cta'),[{translate:'0 10px',opacity:.6},{translate:'0 0',opacity:1}],{duration:480,delay:150});
+document.querySelectorAll('.hero .pill').forEach((pill,index)=>playMotion(pill,[{translate:'0 8px',opacity:.6},{translate:'0 0',opacity:1}],{duration:420,delay:100+index*50}));
 queueNavigation();
 </script></body></html>
