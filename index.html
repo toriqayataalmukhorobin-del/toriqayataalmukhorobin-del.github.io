@@ -59,9 +59,11 @@ h1{margin:12px 0 0;font-size:clamp(2rem,5vw,3.4rem);line-height:1.08;font-weight
 .pl{position:relative;width:58px;height:58px;border-radius:50%;background:rgba(255,255,255,.95);color:#0369a1;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 10px 24px rgba(0,0,0,.25)}.pl svg{fill:currentColor;stroke:none;margin-left:3px}
 .dur{position:absolute;right:10px;bottom:10px;background:rgba(0,0,0,.7);color:#fff;font-size:.72rem;font-weight:700;border-radius:6px;padding:2px 8px}
 .vt{flex:none;width:100%}.vb{padding:16px 18px 18px;flex:1}.vb b{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;font-size:1.02rem;line-height:1.35;min-height:2.7em}.vb span{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;margin-top:8px;color:var(--mut);font-size:.86rem;line-height:1.5}
-.vc.soon{cursor:default}.vc.soon:hover{transform:none;border-color:var(--line);box-shadow:none}.vc.soon .vt img{filter:grayscale(.6) brightness(.55)}.vc.soon .vt::after{content:"";position:absolute;inset:0;background:rgba(10,30,60,.45)}.vc.soon .pl{opacity:.55;z-index:1}
-.bd{position:absolute;left:12px;top:12px;z-index:2;background:#fff;color:#0369a1;font-size:.68rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:4px 10px}
-.ve{grid-column:1/-1;border:2px dashed var(--line);border-radius:20px;padding:40px 20px;text-align:center;color:var(--mut)}.ve svg{width:2.2rem;height:2.2rem;color:var(--brand)}.ve b{display:block;margin-top:10px;color:var(--ink)}
+.ve{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;color:var(--mut)}
+.ve p{margin:0;flex:1 1 280px;font-size:.95rem}
+.ve .cta{margin:0;min-height:44px}
+@media(max-width:600px){.ve{padding:16px}.ve .cta{width:100%}}
+
 dialog{border:0;padding:0;background:#000;border-radius:16px;width:min(960px,94vw);overflow:hidden}dialog::backdrop{background:rgba(5,12,25,.75)}dialog .x{position:absolute;right:10px;top:10px;z-index:2;border:0;border-radius:50%;width:36px;height:36px;cursor:pointer;background:rgba(255,255,255,.9);font-size:1.2rem}
 dialog iframe,dialog video{display:block;width:100%;aspect-ratio:16/9;border:0;background:#000}
 .empty{display:none;text-align:center;padding:40px 0;color:var(--mut)}footer{margin-top:44px;text-align:center;font-size:.78rem;color:var(--mut)}
@@ -83,7 +85,6 @@ aside>h6,aside>a,aside>.dd,aside>.ddp{flex-shrink:0}aside>.help{margin-top:auto}
 .card,.vc{transition:transform var(--motion-panel) var(--ease-ui),box-shadow var(--motion-panel) ease,border-color var(--motion-hover) ease}
 .th img{transition:transform 480ms var(--ease-ui)}
 .card:hover,.card:focus-visible,.vc:hover,.vc:focus-visible{transform:translateY(-3px)}
-.vc.soon:hover{transform:none}
 .cta,.chip,.contact a,.burger,.dd,.help-link{transition:transform var(--motion-hover) var(--ease-ui),background-color var(--motion-hover) ease,color var(--motion-hover) ease,box-shadow var(--motion-hover) ease}
 .cta:active,.chip:active,.burger:active,.dd:active,.contact a:active,.help-link:active{transform:scale(.98);transition-duration:120ms}
 @media(max-width:900px){aside{transition:transform var(--motion-panel) var(--ease-ui)}}
@@ -202,8 +203,15 @@ main>section,main>footer{flex-shrink:0}
 <div class="bar" id="chips"></div><div class="grid" id="g"></div><div class="empty" id="e">Tidak ada panduan yang cocok. Coba kata kunci lain.</div></section>
 <section class="sec" id="cara-pakai"><div class="k">CARA PAKAI</div><h2>Tiga langkah mudah</h2>
 <div class="steps"><div class="st"><i>1</i><b>Pilih panduan</b><span>Cari lewat kotak pencarian atau pilih kartu sesuai kebutuhan.</span></div><div class="st"><i>2</i><b>Ikuti langkahnya</b><span>Setiap langkah punya screenshot dengan area penting yang ditandai kotak merah.</span></div><div class="st"><i>3</i><b>Cetak atau simpan PDF</b><span>Klik tombol “Cetak / Simpan PDF” di bagian atas halaman panduan.</span></div></div></section>
-<section class="sec" id="video-panduan"><div class="k">VIDEO PANDUAN</div><h2>Tonton panduannya</h2><p>Video singkat untuk melengkapi panduan tertulis. Klik untuk memutar.</p>
-<div class="vgrid" id="vg"></div></section>
+<section class="sec" id="video-panduan">
+<h2>Video Panduan</h2>
+<div class="vgrid" id="vg">
+<div class="ve">
+<p>Video panduan segera hadir. Sementara itu, ikuti panduan tertulis yang sudah tersedia.</p>
+<a class="cta" href="#panduan">Lihat panduan tertulis</a>
+</div>
+</div>
+</section>
 <section class="sec" id="bantuan"><div class="k">BUTUH BANTUAN</div>
 <div class="contact"><div><h2>Butuh bantuan ?</h2><p>Gunakan layanan Customer Care Online Fingerspot apabila mengalami kendala pada proses aktivasi atau pengaitan perangkat.</p></div><a href="https://fingerspot.io/contact-us" target="_blank" rel="noopener">Hubungi Fingerspot.io</a></div></section>
 <footer>Pusat Panduan · Fingerspot.io</footer></main></div>
@@ -298,11 +306,11 @@ addEventListener('scroll',queueNavigation,{passive:true});
 addEventListener('resize',()=>{cards.forEach(card=>elementMotion.get(card)?.cancel());queueNavigation();},{passive:true});
 if('ResizeObserver' in window){const layoutObserver=new ResizeObserver(queueNavigation);layoutObserver.observe(document.querySelector('main'));layoutObserver.observe(document.querySelector('.top'));}
 /* Satu kotak video per panduan. Isi field "video" (link YouTube / Vimeo / .mp4) pada entri panduan di daftar G agar kotaknya aktif; dur = durasi (opsional). */
-const V=G.map(g=>({title:'Video: '+g.title,desc:g.desc,thumb:g.img,url:g.video||'',dur:g.dur||''}));
+const V=G.filter(g=>g.video?.trim()).map(g=>({title:'Video: '+g.title,desc:g.desc,thumb:g.img,url:g.video.trim(),dur:g.dur||''}));
 const embed=u=>{let m=u.match(/(?:youtu\.be\/|[?&]v=|embed\/)([\w-]{11})/);if(m)return`<iframe src="https://www.youtube.com/embed/${m[1]}?autoplay=1&rel=0" allow="autoplay;encrypted-media;fullscreen" allowfullscreen></iframe>`;
 m=u.match(/vimeo\.com\/(\d+)/);if(m)return`<iframe src="https://player.vimeo.com/video/${m[1]}?autoplay=1" allow="autoplay;fullscreen" allowfullscreen></iframe>`;
 return`<video src="${esc(u)}" controls autoplay playsinline></video>`};
-$('#vg').innerHTML=V.length?V.map((v,i)=>`<button class="vc${v.url?'':' soon'}" ${v.url?`data-v="${i}"`:'disabled'}><div class="vt">${v.thumb?`<img alt="" loading="lazy" decoding="async" width="1440" height="900" src="${esc(v.thumb)}"/>`:''}<span class="pl"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z"/></svg></span>${v.url?'':'<span class="bd">Segera hadir</span>'}${v.dur?`<span class="dur">${esc(v.dur)}</span>`:''}</div><div class="vb"><b>${esc(v.title)}</b>${v.desc?`<span>${esc(v.desc)}</span>`:''}</div></button>`).join(''):'<div class="ve"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m10 9.5 5 2.5-5 2.5z"/></svg><b>Video panduan segera hadir</b>Sementara itu, gunakan panduan tertulis di atas.</div>';
+if(V.length)$('#vg').innerHTML=V.map((v,i)=>`<button type="button" class="vc" data-v="${i}"><div class="vt">${v.thumb?`<img alt="" loading="lazy" decoding="async" width="1440" height="900" src="${esc(v.thumb)}"/>`:''}<span class="pl"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z"/></svg></span>${v.dur?`<span class="dur">${esc(v.dur)}</span>`:''}</div><div class="vb"><b>${esc(v.title)}</b>${v.desc?`<span>${esc(v.desc)}</span>`:''}</div></button>`).join('');
 $('#vg').addEventListener('click',e=>{const b=e.target.closest('[data-v]');if(b){$('#vp').innerHTML=embed(V[b.dataset.v].url);$('#vm').showModal()}});
 const closeV=()=>{$('#vm').close();$('#vp').innerHTML=''};$('#vx').onclick=closeV;$('#vm').addEventListener('close',()=>$('#vp').innerHTML='');$('#vm').addEventListener('click',e=>{if(e.target.id==='vm')closeV()});
 
