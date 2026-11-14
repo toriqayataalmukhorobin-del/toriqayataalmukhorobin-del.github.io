@@ -18,6 +18,8 @@ a{color:inherit;text-decoration:none}svg{width:1.1em;height:1.1em;flex:none;stro
 .search input{width:100%;height:42px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:0 13px 0 38px;font:inherit;font-size:.9rem;outline:none}
 .search input:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(11,143,243,.18)}
 .burger{display:none;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;width:40px;height:40px;cursor:pointer;align-items:center;justify-content:center}
+.burger .close-icon,.burger[aria-expanded=true] .menu-icon{display:none}
+.burger[aria-expanded=true] .close-icon{display:block}
 .layout{display:grid;grid-template-columns:260px 1fr}
 aside{position:sticky;top:var(--header-height);align-self:start;height:calc(100vh - var(--header-height));overflow:auto;padding:22px 14px;background:var(--card);border-right:1px solid var(--line);display:flex;flex-direction:column}
 aside h6{margin:18px 10px 8px;font-size:.68rem;letter-spacing:.16em;color:var(--mut);font-weight:800}aside h6:first-child{margin-top:0}
@@ -140,15 +142,16 @@ aside a,.chip,.cta,.contact a,.burger,.dd{
 }
 
 .menu-backdrop{display:none}
-@media(max-width:900px){
- aside{height:calc(100dvh - var(--header-height));overscroll-behavior:contain;visibility:hidden;transition:transform var(--motion-panel) var(--ease-ui),visibility 0s var(--motion-panel)}
+@media screen and (max-width:900px){
+ body{padding-top:var(--header-height)}
+ .top{position:fixed;inset:0 0 auto}
+ aside{bottom:0;height:auto;align-self:stretch;overscroll-behavior:contain;visibility:hidden;transition:transform var(--motion-panel) var(--ease-ui),visibility 0s var(--motion-panel)}
  aside.open{transform:translateX(0);visibility:visible;transition-delay:0s}
- .menu-backdrop{display:block;position:fixed;inset:var(--header-height) 0 0;z-index:29;background:rgba(15,35,55,.28);opacity:0;visibility:hidden;transition:opacity var(--motion-panel) var(--ease-ui),visibility 0s var(--motion-panel)}
+ .menu-backdrop{display:block;position:fixed;inset:var(--header-height) 0 0;z-index:29;background:rgba(15,35,55,.28);opacity:0;visibility:hidden;touch-action:none;transition:opacity var(--motion-panel) var(--ease-ui),visibility 0s var(--motion-panel)}
  .menu-backdrop.open{opacity:1;visibility:visible;transition-delay:0s}
- body.menu-open{overflow:hidden}
+ html.menu-open{overflow:hidden}
 }
 :focus-visible{outline:2px solid var(--brand2);outline-offset:4px}
-@media print{.menu-backdrop{display:none!important}body.menu-open{overflow:visible}}
 
 @media(max-width:600px){
 body{background-attachment:scroll}
@@ -173,9 +176,8 @@ main>section,main>footer{flex-shrink:0}
 @media screen and (min-width:901px){html{scrollbar-gutter:stable}}
 @media screen{.card,.vc{min-width:0}.search,.search input{min-width:0}}
 @media screen and (min-width:1280px){.grid,.vgrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media screen and (max-width:900px){aside{height:calc(100svh - var(--header-height))}}
 </style></head><body>
-<header class="top"><button class="burger" id="bg" aria-label="Buka menu" aria-expanded="false" aria-controls="sb"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button><img alt="Fingerspot.io" class="h-9 w-auto object-contain sm:h-10" src="assets/images/fingerspot-logo.png" width="500" height="150" fetchpriority="high" decoding="async"/><div class="sp"></div>
+<header class="top"><button class="burger" id="bg" aria-label="Buka menu" aria-expanded="false" aria-controls="sb"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="menu-icon" d="M4 7h16M4 12h16M4 17h16"/><path class="close-icon" d="m6 6 12 12M18 6 6 18"/></svg></button><img alt="Fingerspot.io" class="h-9 w-auto object-contain sm:h-10" src="assets/images/fingerspot-logo.png" width="500" height="150" fetchpriority="high" decoding="async"/><div class="sp"></div>
 <label class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" enterkeyhint="search" placeholder="Ketik untuk mencari" aria-label="Cari panduan" autocomplete="off"/></label></header>
 <div class="layout">
 <div class="menu-backdrop" id="menu-backdrop" aria-hidden="true"></div><aside id="sb"><h6>BERANDA</h6>
@@ -283,7 +285,7 @@ ui.search.addEventListener('keydown',event=>{
 const mobileMenu=matchMedia('(max-width:900px)');
 function setMenu(open,returnFocus=true){
  open=Boolean(open&&mobileMenu.matches);
- ui.sidebar.classList.toggle('open',open);ui.backdrop.classList.toggle('open',open);document.body.classList.toggle('menu-open',open);
+ ui.sidebar.classList.toggle('open',open);ui.backdrop.classList.toggle('open',open);document.documentElement.classList.toggle('menu-open',open);
  ui.search.inert=open;document.querySelector('main').inert=open;
  ui.burger.setAttribute('aria-expanded',String(open));ui.burger.setAttribute('aria-label',open?'Tutup menu':'Buka menu');
  if(mobileMenu.matches)ui.sidebar.inert=!open;else ui.sidebar.inert=false;
