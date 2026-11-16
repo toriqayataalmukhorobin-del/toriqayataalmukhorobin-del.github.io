@@ -193,12 +193,12 @@ main>section,main>footer{flex-shrink:0}
 <section class="hero" id="ringkasan"><div class="eyebrow">FINGERSPOT.IO · PUSAT PANDUAN</div>
 <h1>Panduan Pengguna <span>Fingerspot.io</span></h1>
 <p class="lead">Panduan langkah demi langkah dengan screenshot nyata. Pilih topik, ikuti langkahnya, selesai.</p>
-<div class="pills"><span class="pill"><b id="n">3</b> panduan lengkap</span><span class="pill"><b>Responsif</b> HP &amp; desktop</span><span class="pill"><b>PDF</b> siap cetak</span></div>
+<div class="pills"><span class="pill"><b id="n">3</b> panduan lengkap</span><span class="pill"><b>Responsif</b> HP &amp; desktop</span></div>
 <a class="cta" href="#panduan">Mulai pilih panduan <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></section>
 <section class="sec" id="panduan"><div class="k">PILIH PANDUAN</div><h2>Apa yang ingin Anda lakukan?</h2><p>Klik kartu untuk membuka panduan. Gunakan pencarian atau filter untuk mempercepat.</p>
 <div class="bar" id="chips"></div><div class="grid" id="g"></div><div class="empty" id="e">Tidak ada panduan yang cocok. Coba kata kunci lain.</div></section>
-<section class="sec" id="cara-pakai"><div class="k">CARA PAKAI</div><h2>Tiga langkah mudah</h2>
-<div class="steps"><div class="st"><i>1</i><b>Pilih panduan</b><span>Cari lewat kotak pencarian atau pilih kartu sesuai kebutuhan.</span></div><div class="st"><i>2</i><b>Ikuti langkahnya</b><span>Setiap langkah punya screenshot dengan area penting yang ditandai kotak merah.</span></div><div class="st"><i>3</i><b>Cetak atau simpan PDF</b><span>Klik tombol “Cetak / Simpan PDF” di bagian atas halaman panduan.</span></div></div></section>
+<section class="sec" id="cara-pakai"><div class="k">CARA PAKAI</div><h2>Dua langkah mudah</h2>
+<div class="steps"><div class="st"><i>1</i><b>Pilih panduan</b><span>Cari lewat kotak pencarian atau pilih kartu sesuai kebutuhan.</span></div><div class="st"><i>2</i><b>Ikuti langkahnya</b><span>Setiap langkah punya screenshot dengan area penting yang ditandai kotak merah.</span></div></div></section>
 <section class="sec" id="video-panduan">
 <h2>Video Panduan</h2>
 <div class="vgrid" id="vg">
@@ -236,7 +236,7 @@ if(animate&&!motionPreference.matches){
   previousPositions.set(card,{left:card.offsetLeft+x,top:card.offsetTop+y});
  }
 }
-if(!ui.grid.children.length)ui.grid.innerHTML=G.map(g=>`<a class="card" href="${esc(g.href)}"><div class="th"><img alt="" loading="lazy" decoding="async" width="1440" height="900" src="${g.img}"/></div><div class="cb"><div class="card-labels"><div class="ic">${ic(g.icon)}</div><div class="tags">${g.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div></div><h3>${esc(g.title)}</h3><p>${esc(g.desc)}</p><div class="meta"><span class="m"><svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>${g.steps} langkah</span><span class="m"><svg viewBox="0 0 24 24"><path d="M6 9V3h12v6M6 18H4v-8h16v8h-2M6 14h12v7H6z"/></svg>Bisa dicetak</span></div><div class="go">Buka panduan <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div></a>`).join('');
+if(!ui.grid.children.length)ui.grid.innerHTML=G.map(g=>`<a class="card" href="${esc(g.href)}"><div class="th"><img alt="" loading="lazy" decoding="async" width="1440" height="900" src="${g.img}"/></div><div class="cb"><div class="card-labels"><div class="ic">${ic(g.icon)}</div><div class="tags">${g.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div></div><h3>${esc(g.title)}</h3><p>${esc(g.desc)}</p><div class="meta"><span class="m"><svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>${g.steps} langkah</span></div><div class="go">Buka panduan <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div></a>`).join('');
 if(!cards.length){cards=[...ui.grid.children];chipButtons=[...ui.chips.querySelectorAll('[data-t]')];ui.count=ui.chips.querySelector('.count');}
 ui.count.textContent=`${L.length} dari ${G.length} panduan`;
 chipButtons.forEach(button=>{button.classList.toggle('on',button.dataset.t===tag);button.setAttribute('aria-pressed',String(button.dataset.t===tag));});
