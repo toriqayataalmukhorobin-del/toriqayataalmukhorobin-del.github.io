@@ -280,7 +280,11 @@ ui.search.addEventListener('keydown',event=>{
  if(event.key!=='Enter'||event.isComposing||event.keyCode===229)return;
  event.preventDefault();
  draw({animate:false});
- if(ui.search.value.trim())ui.guides.scrollIntoView({behavior:motionPreference.matches?'instant':'smooth',block:'start'});
+ if(ui.search.value.trim()){
+  selectedSection=ui.guides;
+  queueNavigation();
+  ui.guides.scrollIntoView({behavior:motionPreference.matches?'instant':'smooth',block:'start'});
+ }
 });
 const mobileMenu=matchMedia('(max-width:900px)');
 function setMenu(open,returnFocus=true){
@@ -308,10 +312,31 @@ addEventListener('keydown',event=>{
 const links=[...document.querySelectorAll('[data-s]')];
 const sections=links.map(link=>document.getElementById(link.dataset.s));
 let navFrame=0,currentSection='';
+let selectedSection=sections.find(section=>'#'+section.id===location.hash)||null;
+document.addEventListener('click',event=>{
+ const anchor=event.target.closest('a[href^="#"]');
+ if(!anchor||event.defaultPrevented||event.button!==0||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;
+ const target=sections.find(section=>'#'+section.id===anchor.getAttribute('href'));
+ if(target){selectedSection=target;queueNavigation();}
+});
+addEventListener('hashchange',()=>{
+ selectedSection=sections.find(section=>'#'+section.id===location.hash)||null;
+ queueNavigation();
+});
+function resumeScrollNavigation(){selectedSection=null;queueNavigation();}
+addEventListener('wheel',resumeScrollNavigation,{passive:true});
+addEventListener('touchmove',resumeScrollNavigation,{passive:true});
+addEventListener('pointerdown',event=>{
+ if(!event.target.closest('a,button,input,aside'))resumeScrollNavigation();
+},{passive:true});
+addEventListener('keydown',event=>{
+ if(!event.target.matches('input,textarea,[contenteditable="true"]')&&['ArrowUp','ArrowDown','PageUp','PageDown','Home','End',' '].includes(event.key))resumeScrollNavigation();
+});
 function updateNavigation(){
  navFrame=0;const edge=document.querySelector('.top').offsetHeight+70;
  let active=sections[0];for(const section of sections){if(section.getBoundingClientRect().top<=edge)active=section;}
  if(scrollY>2&&scrollY+innerHeight>=document.documentElement.scrollHeight-3)active=sections[sections.length-1];
+ if(selectedSection)active=selectedSection;
  if(active.id===currentSection)return;currentSection=active.id;
  links.forEach(link=>{const on=link.dataset.s===active.id;link.classList.toggle('on',on);if(on)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');});
 }
