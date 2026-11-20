@@ -35,7 +35,6 @@ main{min-width:0;padding:0 clamp(18px,4vw,56px) 40px}
 .eyebrow{font-size:.72rem;letter-spacing:.18em;font-weight:800;color:var(--brand)}
 h1{margin:12px 0 0;font-size:clamp(2rem,5vw,3.4rem);line-height:1.08;font-weight:900;letter-spacing:-.03em}h1 span{color:var(--brand)}
 .lead{max-width:640px;margin:16px 0 0;color:var(--mut);font-size:1.05rem}
-.pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.pill{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 14px;font-size:.8rem;font-weight:600}.pill b{color:var(--brand)}
 .cta{display:inline-flex;align-items:center;gap:8px;margin-top:26px;background:var(--action);color:#fff;border-radius:12px;padding:12px 20px;font-weight:700;box-shadow:none}
 .sec{margin-top:48px}.sec>.k{font-size:.72rem;letter-spacing:.18em;font-weight:800;color:var(--mut);padding-bottom:8px;border-bottom:2px solid var(--brand);display:inline-block}
 .sec h2{margin:14px 0 4px;font-size:1.5rem;font-weight:800;letter-spacing:-.02em}.sec>p{margin:0;color:var(--mut);font-size:.92rem}
@@ -111,9 +110,6 @@ aside a,.chip,.cta,.contact a,.burger,.dd{
  .eyebrow{font-size:10px;letter-spacing:.12em}
  h1{margin-top:10px;font-size:clamp(28px,8vw,36px);line-height:1.12}
  .lead{margin-top:12px;font-size:15px;line-height:1.6}
- .pills{gap:8px;margin-top:16px}
- .pill{font-size:12px;padding:6px 10px}
- .pills .pill:nth-child(2){display:none}
  .cta{display:flex;justify-content:center;min-height:46px;margin-top:18px;padding:11px 16px;font-size:14px}
  .sec{margin-top:30px}
  .sec h2{font-size:23px;line-height:1.25;margin-top:12px}
@@ -193,8 +189,7 @@ main>section,main>footer{flex-shrink:0}
 <section class="hero" id="ringkasan"><div class="eyebrow">FINGERSPOT.IO · PUSAT PANDUAN</div>
 <h1>Panduan Pengguna <span>Fingerspot.io</span></h1>
 <p class="lead">Panduan langkah demi langkah dengan screenshot nyata. Pilih topik, ikuti langkahnya, selesai.</p>
-<div class="pills"><span class="pill"><b id="n">3</b> panduan lengkap</span><span class="pill"><b>Responsif</b> HP &amp; desktop</span></div>
-<a class="cta" href="#panduan">Mulai pilih panduan <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></section>
+</section>
 <section class="sec" id="panduan"><div class="k">PILIH PANDUAN</div><h2>Apa yang ingin Anda lakukan?</h2><p>Klik kartu untuk membuka panduan. Gunakan pencarian atau filter untuk mempercepat.</p>
 <div class="bar" id="chips"></div><div class="grid" id="g"></div><div class="empty" id="e">Tidak ada panduan yang cocok. Coba kata kunci lain.</div></section>
 <section class="sec" id="cara-pakai"><div class="k">CARA PAKAI</div><h2>Dua langkah mudah</h2>
@@ -220,7 +215,6 @@ const $=s=>document.querySelector(s),esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;'
 const ui={search:$('#q'),sidebar:$('#sb'),burger:$('#bg'),backdrop:$('#menu-backdrop'),dropdown:$('#ddp'),dropdownButton:$('#ddb'),sidebarSearch:$('#sf'),sidebarList:$('#sl'),chips:$('#chips'),grid:$('#g'),empty:$('#e'),guides:$('#panduan')};
 let cards=[],chipButtons=[];
 const tags=['Semua',...new Set(G.flatMap(g=>g.tags))];let tag='Semua';
-$('#n').textContent=G.length;
 const rsl=()=>{const k=ui.sidebarSearch.value.trim().toLowerCase(),L=G.filter(g=>g.title.toLowerCase().includes(k));
 ui.sidebarList.innerHTML=L.length?L.map(g=>`<a href="${esc(g.href)}">${ic(g.icon)}<span>${esc(g.title)}</span></a>`).join(''):'<div class="dz">Tidak ditemukan</div>'};
 $('#dn').textContent=G.length;rsl();ui.sidebarSearch.addEventListener('input',rsl);
@@ -393,7 +387,7 @@ if(motionObserver&&!motionPreference.matches){
  }
 }
 if(!location.hash&&scrollY===0){
- for(const [index,target] of [...document.querySelectorAll('.hero h1, .hero .lead, .hero .cta')].entries()){
+ for(const [index,target] of [...document.querySelectorAll('.hero h1, .hero .lead')].entries()){
   playMotion(target,[{translate:'0 10px',opacity:.8},{translate:'0 0',opacity:1}],{delay:index*45});
  }
 }
