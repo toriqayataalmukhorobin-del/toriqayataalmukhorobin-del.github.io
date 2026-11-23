@@ -572,17 +572,42 @@ article[id],section[id],div[id].flow-detail,div[id].branch-panel{scroll-margin-t
 .guide-support a{display:block;margin:8px 14px 14px;padding:10px;color:#0369a1;font-weight:800;font-size:14px;text-decoration:none;border-radius:8px}
 .guide-support a:hover{background:#cbe3ff}
 .guide-nav-link:focus-visible,.guide-support a:focus-visible{outline:2px solid #0369a1;outline-offset:2px}
-@media screen and (min-width:901px){
+@media screen and (min-width:1201px){
  .drawer{visibility:visible;transform:none;pointer-events:auto}
  .drawer-brand,.menu-button,.drawer-overlay{display:none!important}
  main.mx-auto{max-width:none;margin-left:260px}
  .home-content{max-width:1152px;margin:0 auto}
 }
-@media screen and (max-width:900px){
+@media screen and (max-width:1200px){
  .drawer{width:min(300px,calc(100vw - 40px))}
  .guide-support img{width:120px;height:120px}
 }
 @media(prefers-reduced-motion:reduce){.drawer,.drawer-overlay{transition:none}}
+</style>
+
+<style>
+/* Kolom panduan mengikuti ruang isi setelah sidebar diperhitungkan. */
+.home-content{container-type:inline-size;width:100%;min-width:0}
+.home-layout{min-width:0}
+.guide-topbar-row{max-width:none;margin-left:0;margin-right:0;width:100%}
+@container (max-width:1000px){
+ #cover>.grid,.cover,.step-card>.grid[class*="lg:grid-cols"]{grid-template-columns:minmax(0,1fr)}
+ #cover>.grid>div{padding:24px}
+ .home-content [class*="sm:w-max"]{width:100%;grid-template-columns:minmax(0,1fr);padding-right:0}
+ .guide-title{font-size:clamp(30px,6cqi,44px)!important;line-height:1.12}
+ .step-card .grid>div{min-width:0}
+}
+@media screen and (min-width:1201px){
+ main.mx-auto{width:calc(100% - 260px);margin-right:0}
+ .guide-topbar-row{padding-left:24px;padding-right:24px}
+}
+@media screen and (max-width:1200px){
+ main.mx-auto{width:100%;max-width:1152px;margin-left:auto;margin-right:auto}
+}
+@media screen and (max-width:600px){
+ #cover>.grid>div{padding:20px}
+ .guide-title{font-size:30px!important}
+}
 </style>
 </head>
 <body>
@@ -1124,7 +1149,7 @@ article[id],section[id],div[id].flow-detail,div[id].branch-panel{scroll-margin-t
  var overlay=document.getElementById('drawer-overlay');
  var toggle=document.getElementById('menu-toggle');
  var closeBtn=document.getElementById('drawer-close');
- var mobile=matchMedia('(max-width:900px)');
+ var mobile=matchMedia('(max-width:1200px)');
  var lastFocus=null;
  function syncTopbar(){
   var topbar=document.querySelector('.topbar, .no-print.sticky');
