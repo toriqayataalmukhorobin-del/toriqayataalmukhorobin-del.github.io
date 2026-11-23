@@ -354,6 +354,40 @@ article[id],section[id],div[id].flow-detail,div[id].branch-panel{scroll-margin-t
 }
 @media(prefers-reduced-motion:reduce){.js-reveal .reveal,.js-reveal .reveal-item{transform:none!important;transition:none!important}}
 </style>
+
+<style>
+/* Navigasi antar panduan mengikuti sidebar pusat panduan. */
+.drawer{top:var(--topbar-h,66px);bottom:0;left:0;right:auto;width:260px;height:auto;max-height:none;border-radius:0;border:0;border-right:1px solid #dde4ea;box-shadow:none;transform:translateX(-100%);opacity:1;visibility:hidden;transition:transform .28s cubic-bezier(.22,1,.36,1),visibility 0s .28s;will-change:auto}
+.drawer.open{transform:translateX(0);max-height:none;overflow:hidden;animation:none;visibility:visible;transition-delay:0s}
+.drawer-brand{background:#fff;color:#17212b;padding:18px 14px 8px;flex:none}
+.drawer-brand::after{display:none}
+.drawer-brand-row{padding:0}.drawer-wordmark,.drawer-brand-sub{display:none}
+.drawer-close{position:static;margin-left:auto;color:#5f6b76;border:1px solid #dde4ea;background:#fff;width:36px;height:36px}
+.drawer-overlay{background:rgba(15,35,55,.28);backdrop-filter:none}
+.drawer-nav{flex:1;min-height:0;padding:0 14px 16px;display:flex;flex-direction:column;gap:20px}
+.guide-nav-label{margin:10px 10px 8px;font-size:11px;letter-spacing:.14em;color:#5f6b76;font-weight:800}
+.guide-nav-link{display:flex;gap:10px;align-items:center;padding:11px 12px;border-radius:10px;border-left:3px solid transparent;color:#5f6b76;font-size:14px;line-height:1.5;text-decoration:none}
+.guide-nav-link svg{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7}
+.guide-nav-link:hover{background:#f6f8fa;color:#17212b}
+.guide-nav-link[aria-current=page]{background:#e8f4ff;color:#0b8ff3;border-left-color:#0b8ff3;font-weight:700}
+.guide-support{margin-top:auto;background:#dcecff;border-radius:14px;text-align:center;overflow:hidden;flex:none}
+.guide-support h3{margin:0;padding:12px;background:#0b8ff3;color:#fff;font-size:15px;font-weight:800}
+.guide-support img{display:block;width:150px;height:150px;object-fit:contain;margin:16px auto 8px}
+.guide-support a{display:block;margin:8px 14px 14px;padding:10px;color:#0369a1;font-weight:800;font-size:14px;text-decoration:none;border-radius:8px}
+.guide-support a:hover{background:#cbe3ff}
+.guide-nav-link:focus-visible,.guide-support a:focus-visible{outline:2px solid #0369a1;outline-offset:2px}
+@media screen and (min-width:901px){
+ .drawer{visibility:visible;transform:none;pointer-events:auto}
+ .drawer-brand,.menu-button,.drawer-overlay{display:none!important}
+ main.mx-auto{max-width:none;margin-left:260px}
+ .home-content{max-width:1152px;margin:0 auto}
+}
+@media screen and (max-width:900px){
+ .drawer{width:min(300px,calc(100vw - 40px))}
+ .guide-support img{width:120px;height:120px}
+}
+@media(prefers-reduced-motion:reduce){.drawer,.drawer-overlay{transition:none}}
+</style>
 </head>
 <body class="antialiased">
 <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
@@ -366,7 +400,7 @@ article[id],section[id],div[id].flow-detail,div[id].branch-panel{scroll-margin-t
 <main class="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:py-10">
 <div class="home-layout">
 <div class="drawer-overlay no-print" id="drawer-overlay" aria-hidden="true"></div>
-<aside class="drawer no-print" id="drawer" role="dialog" aria-modal="true" aria-label="Daftar isi panduan" aria-hidden="true">
+<aside class="drawer no-print" id="drawer" role="dialog" aria-modal="true" aria-label="Navigasi panduan" aria-hidden="true">
 <div class="drawer-brand">
 <div class="drawer-brand-row">
 <a class="drawer-wordmark" href="index.html" aria-label="Beranda Panduan Fingerspot.io">fingerspot.io</a>
@@ -374,9 +408,7 @@ article[id],section[id],div[id].flow-detail,div[id].branch-panel{scroll-margin-t
 </div>
 <div class="drawer-brand-sub">Daftar Isi · Panduan Aktivasi UMKM</div>
 </div>
-<nav class="drawer-nav" id="drawer-nav" aria-label="Daftar isi panduan">
-<span class="rail-indicator" id="rail-indicator" aria-hidden="true"></span><div class="sidebar-group"><p class="sidebar-group-title">Mulai</p><div class="sidebar-nav"><a class="sidebar-link" href="#cover"><span class="sidebar-num"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 11.2 12 4l8 7.2"/><path d="M6.6 9.8V20h10.8V9.8"/></svg></span><span class="sidebar-link-text">Ringkasan panduan</span></a><a class="sidebar-link" href="#panduan-aktivasi"><span class="sidebar-num"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9.5 6H20M9.5 12H20M9.5 18H20"/><path d="M4 6h.01M4 12h.01M4 18h.01"/></svg></span><span class="sidebar-link-text">Panduan & alur aktivasi</span></a><a class="sidebar-link" href="#persiapan"><span class="sidebar-num"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="6" y="4.5" width="12" height="16" rx="2"/><path d="m10.2 12.6 1.9 1.9 3.6-4"/></svg></span><span class="sidebar-link-text">Persiapan sebelum mulai</span></a><a class="sidebar-link" href="#scan-qr"><span class="sidebar-num"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="4" y="4" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1"/><path d="M14 14h2.3v2.3H14z" fill="currentColor" stroke="none"/><path d="M17.8 17.8H20v2.2h-2.2z" fill="currentColor" stroke="none"/></svg></span><span class="sidebar-link-text">Scan QR pada kemasan</span></a></div></div><div class="sidebar-group"><p class="sidebar-group-title">Langkah Aktivasi</p><div class="sidebar-nav"><a class="sidebar-link" href="#step-1"><span class="sidebar-num">01</span><span class="sidebar-link-text">Mulai Aktivasi Garansi</span></a><a class="sidebar-link" href="#step-2"><span class="sidebar-num">02</span><span class="sidebar-link-text">Masukkan Serial Number</span></a><a class="sidebar-link" href="#step-3"><span class="sidebar-num">03</span><span class="sidebar-link-text">Buat Akun Baru</span></a><a class="sidebar-link" href="#step-4"><span class="sidebar-num">04</span><span class="sidebar-link-text">Lengkapi Data Akun</span></a><a class="sidebar-link" href="#step-5"><span class="sidebar-num">05</span><span class="sidebar-link-text">Garansi Berhasil Diaktifkan</span></a><a class="sidebar-link" href="#step-6"><span class="sidebar-num">06</span><span class="sidebar-link-text">Unduh Fingerspot.io Desktop</span></a><a class="sidebar-link" href="#step-7"><span class="sidebar-num">07</span><span class="sidebar-link-text">Unduh Fingerspot.io Mobile</span></a><a class="sidebar-link" href="#step-8"><span class="sidebar-num">08</span><span class="sidebar-link-text">Lengkapi Data Perangkat</span></a><a class="sidebar-link" href="#step-9"><span class="sidebar-num">09</span><span class="sidebar-link-text">Setujui Ketentuan Perangkat</span></a><a class="sidebar-link" href="#step-10"><span class="sidebar-num">10</span><span class="sidebar-link-text">Hubungkan Tanpa Paket</span></a><a class="sidebar-link" href="#step-11"><span class="sidebar-num">11</span><span class="sidebar-link-text">Aktifkan Paket UMKM</span></a><a class="sidebar-link" href="#step-12"><span class="sidebar-num">12</span><span class="sidebar-link-text">Baca Ketentuan Paket UMKM</span></a><a class="sidebar-link" href="#step-13"><span class="sidebar-num">13</span><span class="sidebar-link-text">Paket UMKM Berhasil Diaktifkan</span></a><a class="sidebar-link" href="#step-14"><span class="sidebar-num">14</span><span class="sidebar-link-text">Buka Informasi Layanan</span></a><a class="sidebar-link" href="#step-15"><span class="sidebar-num">15</span><span class="sidebar-link-text">Pastikan Paket UMKM Aktif</span></a></div></div><div class="sidebar-group"><p class="sidebar-group-title">Penutup</p><div class="sidebar-nav"><a class="sidebar-link" href="#selesai"><span class="sidebar-num"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="m8.9 12.3 2.3 2.3 4.1-4.3"/></svg></span><span class="sidebar-link-text">Selesai & cek hasil</span></a></div></div></nav>
-<div class="drawer-foot"><p class="drawer-foot-title">Butuh bantuan?</p><p>Kendala saat aktivasi? <a href="https://fingerspot.io/contact-us">Customer Care Fingerspot →</a></p></div>
+<nav class="drawer-nav" id="drawer-nav" aria-label="Navigasi panduan"><div><p class="guide-nav-label">BERANDA</p><a class="guide-nav-link" href="index.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-8 9 8v9h-6v-6H9v6H3z"/></svg>Home</a></div><div><p class="guide-nav-label">PANDUAN</p><a class="guide-nav-link" href="cara_mudah_aktivasi_paket_umkm_fingerspot_fix%20(1).html" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h14v18H5zM8 7h8M8 11h8M8 15h5"/></svg>Aktivasi FREE Paket UMKM</a><a class="guide-nav-link" href="aktivasi_bundling_v2%20(2).html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h14v18H5zM8 7h8M8 11h8M8 15h5"/></svg>Aktivasi Paket Bundling</a><a class="guide-nav-link" href="panduan_tambah_registrasi_karyawan_revisi_final_v7%20(1).html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h14v18H5zM8 7h8M8 11h8M8 15h5"/></svg>Tambah &amp; Registrasi Karyawan</a></div><div class="guide-support"><h3>Kendala ?</h3><img src="assets/images/kantor-bantuan.png" width="150" height="150" alt="Ilustrasi kantor"/><a href="https://fingerspot.io/contact-us" target="_blank" rel="noopener">Hubungi Kami</a></div></nav>
 </aside>
 <div class="home-content">
 <!-- COVER -->
@@ -639,47 +671,48 @@ article[id],section[id],div[id].flow-detail,div[id].branch-panel{scroll-margin-t
 <script>
   // Drawer daftar isi: buka/tutup
   (function () {
-    var overlay = document.getElementById('drawer-overlay');
-    var drawer = document.getElementById('drawer');
-    var toggle = document.getElementById('menu-toggle');
-    var closeBtn = document.getElementById('drawer-close');
-    if (!overlay || !drawer || !toggle || !closeBtn) return;
-  function syncTopbar(){ var tb = document.querySelector('.topbar, .no-print.sticky'); if (tb) { document.documentElement.style.setProperty('--topbar-h', Math.round(tb.getBoundingClientRect().height) + 'px'); } }
-  syncTopbar();
-  window.addEventListener('resize', syncTopbar);
-    var lastFocus = null;
-    function openDrawer() {
-      lastFocus = document.activeElement;
-      drawer.classList.add('open');
-      overlay.classList.add('open');
-      document.body.classList.add('drawer-open');
-      drawer.setAttribute('aria-hidden', 'false');
-      toggle.setAttribute('aria-expanded', 'true');
-      toggle.setAttribute('aria-label', 'Tutup daftar isi');
-      closeBtn.focus();
-    }
-    function closeDrawer(returnFocus) {
-      drawer.classList.remove('open');
-      overlay.classList.remove('open');
-      document.body.classList.remove('drawer-open');
-      drawer.setAttribute('aria-hidden', 'true');
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.setAttribute('aria-label', 'Buka daftar isi');
-      if (returnFocus !== false && lastFocus && lastFocus.focus) lastFocus.focus();
-    }
-    toggle.addEventListener('click', function () {
-      if (drawer.classList.contains('open')) closeDrawer(); else openDrawer();
-    });
-    closeBtn.addEventListener('click', function () { closeDrawer(); });
-    overlay.addEventListener('click', function () { closeDrawer(false); });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && drawer.classList.contains('open')) closeDrawer();
-    });
-    // tutup drawer setelah memilih langkah
-    drawer.querySelectorAll('a[href^="#"]').forEach(function (a) {
-      a.addEventListener('click', function () { closeDrawer(false); });
-    });
-  })();
+ var drawer=document.getElementById('drawer');
+ var overlay=document.getElementById('drawer-overlay');
+ var toggle=document.getElementById('menu-toggle');
+ var closeBtn=document.getElementById('drawer-close');
+ var mobile=matchMedia('(max-width:900px)');
+ var lastFocus=null;
+ function syncTopbar(){
+  var topbar=document.querySelector('.topbar, .no-print.sticky');
+  if(topbar)document.documentElement.style.setProperty('--topbar-h',Math.round(topbar.getBoundingClientRect().height)+'px');
+ }
+ function setOpen(open,restore){
+  open=Boolean(open&&mobile.matches);
+  drawer.classList.toggle('open',open);
+  overlay.classList.toggle('open',open);
+  document.body.classList.toggle('drawer-open',open);
+  drawer.inert=mobile.matches&&!open;
+  drawer.setAttribute('aria-hidden',String(drawer.inert));
+  drawer.setAttribute('role',mobile.matches?'dialog':'navigation');
+  if(mobile.matches)drawer.setAttribute('aria-modal','true');else drawer.removeAttribute('aria-modal');
+  toggle.setAttribute('aria-expanded',String(open));
+  toggle.setAttribute('aria-label',open?'Tutup menu panduan':'Buka menu panduan');
+  if(open){lastFocus=document.activeElement;closeBtn.focus({preventScroll:true});}
+  else if(restore&&lastFocus)lastFocus.focus({preventScroll:true});
+ }
+ toggle.addEventListener('click',function(){setOpen(!drawer.classList.contains('open'),true)});
+ closeBtn.addEventListener('click',function(){setOpen(false,true)});
+ overlay.addEventListener('click',function(){setOpen(false,true)});
+ document.addEventListener('keydown',function(event){
+  if(!mobile.matches||!drawer.classList.contains('open'))return;
+  if(event.key==='Escape')setOpen(false,true);
+  if(event.key==='Tab'){
+   var nodes=Array.from(drawer.querySelectorAll('a,button')).filter(function(el){return el.getClientRects().length});
+   var first=nodes[0],last=nodes[nodes.length-1];
+   if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
+   else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
+  }
+ });
+ mobile.addEventListener('change',function(){setOpen(false,false)});
+ window.addEventListener('resize',syncTopbar);
+ syncTopbar();
+ setOpen(false,false);
+})();
 
   // Scroll-spy daftar isi
   (function () {
