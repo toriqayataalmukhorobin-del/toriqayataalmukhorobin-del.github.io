@@ -188,13 +188,23 @@ main>section,main>footer{flex-shrink:0}
 .guide-copy>span{display:block;margin-top:3px;font-size:.8rem;line-height:1.6;color:var(--mut)}
 .guide-arrow{flex:none;color:#8498a7}
 .bar{padding:14px;background:var(--card);border:1px solid var(--line);border-radius:14px}
-.chip{display:inline-flex;align-items:center;gap:7px}
+.filter-tabs{display:flex;flex-wrap:wrap;gap:8px;min-width:0}
+.chip{display:inline-flex;align-items:center;gap:7px;flex-shrink:0}
 .chip-count{display:inline-grid;place-items:center;min-width:19px;height:19px;padding:0 4px;background:#edf2f6;color:var(--mut);border-radius:50%;font-size:.65rem}
 .chip.on{background:var(--brand);border-color:var(--brand);color:#fff}
 .chip.on .chip-count{background:rgba(255,255,255,.22);color:#fff}
 @media(hover:hover){.guide-row:hover{background:var(--soft);border-color:#91cdfb}}
 @media(max-width:600px){
- .bar{padding:10px;gap:7px}.chip{min-height:40px;font-size:12px;padding:7px 10px}
+ .bar{display:flex;flex-direction:column;align-items:stretch;gap:10px;padding:10px;min-width:0}
+ .filter-tabs{width:100%;max-width:100%;flex:none;flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:#c4d8e8 transparent;padding:2px 2px 7px}
+ .chip{min-height:44px;font-size:12px;padding:8px 12px;white-space:nowrap}
+ .bar .count{flex-basis:auto;margin:0 2px;font-size:12px}
+ .sec h2{font-size:clamp(20px,5.6vw,23px)}
+ .guide-group-heading>div{min-width:0}
+ .guide-group-heading p{font-size:12px;line-height:1.6}
+ .guide-row{align-items:flex-start}
+ .guide-arrow{margin-top:7px}
+ .guide-copy{overflow-wrap:anywhere}
  .guide-row{gap:10px;padding:12px}.guide-number{width:30px;height:34px}
  .guide-group-heading{align-items:flex-start;gap:10px}.group-count{font-size:10px}
  .guide-copy h4{font-size:14px}.guide-copy>span{font-size:12px}
@@ -255,10 +265,10 @@ function draw({animate=true}={}){
  const matches=g=>(tag==='Semua'||g.tags.includes(tag))&&(g.title+' '+g.desc+' '+g.tags.join(' ')).toLowerCase().includes(keyword);
  const results=G.filter(matches);
  if(!ui.chips.children.length){
-  ui.chips.innerHTML=tags.map(t=>{
+  ui.chips.innerHTML='<div class="filter-tabs" role="group" aria-label="Filter kategori panduan">'+tags.map(t=>{
    const count=t==='Semua'?G.length:G.filter(g=>g.tags.includes(t)).length;
    return `<button class="chip" data-t="${esc(t)}">${esc(t)} <span class="chip-count">${count}</span></button>`;
-  }).join('')+'<span class="count" aria-live="polite"></span>';
+  }).join('')+'</div><span class="count" aria-live="polite"></span>';
   chipButtons=[...ui.chips.querySelectorAll('[data-t]')];
   ui.count=ui.chips.querySelector('.count');
  }
