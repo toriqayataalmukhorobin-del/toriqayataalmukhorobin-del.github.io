@@ -234,9 +234,41 @@ main>section,main>footer{flex-shrink:0}
  #panduan{margin-top:4px}
 }
 </style>
+
+<style>
+@media(max-width:360px){
+ :root{--header-height:96px}
+ .top{padding:6px 10px;gap:6px 8px}
+ .top .burger{width:36px;height:36px;flex-basis:36px}
+ .top img{height:auto;max-height:34px;min-width:0;max-width:calc(100% - 44px);flex-shrink:1}
+ main{padding-right:10px;padding-left:10px}
+ .hero{margin-right:-10px;margin-left:-10px;padding-right:10px;padding-left:10px}
+ .hero h1{font-size:clamp(19px,7vw,25px);overflow-wrap:anywhere}
+ .hero h1 span{white-space:normal}
+ .eyebrow{font-size:9px;letter-spacing:.08em;overflow-wrap:anywhere}
+ .hero .lead,.sec>p{font-size:13px}
+ .hero-illustration{max-width:100%}
+ .sec h2{font-size:19px;overflow-wrap:anywhere}
+ .guide-group-heading{flex-wrap:wrap}
+ .guide-row{padding:10px;gap:8px}
+ .guide-number{width:24px;height:28px;font-size:10px}
+ .guide-copy h4{font-size:13px}
+ .guide-arrow{width:14px;height:14px}
+ .bar{padding:8px}
+ .ve{padding:12px;min-width:0}
+ .ve p{flex-basis:100%;min-width:0;overflow-wrap:anywhere}
+ .ve .cta{padding:10px;font-size:13px}
+ .contact{padding:12px}
+ .contact>div{min-width:0}
+ .contact a{padding:10px;font-size:13px;overflow-wrap:anywhere}
+ aside{width:calc(100vw - 16px);padding:12px 8px}
+ aside a{font-size:13px;overflow-wrap:anywhere}
+ .help-illustration{max-width:100px}
+}
+</style>
 </head><body>
 <header class="top"><button class="burger" id="bg" aria-label="Buka menu" aria-expanded="false" aria-controls="sb"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="menu-icon" d="M4 7h16M4 12h16M4 17h16"/><path class="close-icon" d="m6 6 12 12M18 6 6 18"/></svg></button><img alt="Fingerspot.io" class="h-9 w-auto object-contain sm:h-10" src="assets/images/fingerspot-logo.png" width="500" height="150" fetchpriority="high" decoding="async"/><div class="sp"></div>
-<label class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" enterkeyhint="search" placeholder="Ketik untuk mencari" aria-label="Cari panduan" autocomplete="off"/></label></header>
+<label class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" enterkeyhint="search" placeholder="Cari panduan" aria-label="Cari panduan" autocomplete="off"/></label></header>
 <div class="layout">
 <div class="menu-backdrop" id="menu-backdrop" aria-hidden="true"></div><aside id="sb"><h6>MENU</h6>
 <a href="#ringkasan" data-s="ringkasan"><svg viewBox="0 0 24 24"><path d="M3 11 12 3l9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Beranda</a>
