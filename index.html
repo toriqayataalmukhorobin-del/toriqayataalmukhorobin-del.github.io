@@ -12,7 +12,7 @@
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-height) + 18px)}
 body{margin:0;background:radial-gradient(ellipse 90% 60% at 50% -10%,rgba(14,165,233,.10),transparent 70%),radial-gradient(ellipse 70% 50% at 100% 30%,rgba(56,128,184,.07),transparent 70%),linear-gradient(180deg,#eef6fd 0%,#f4f8fb 45%,#f7f9fb 100%);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.55}
 a{color:inherit;text-decoration:none}svg{width:1.1em;height:1.1em;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.top{position:sticky;top:0;z-index:40;height:var(--header-height);display:flex;align-items:center;gap:14px;padding:0 20px;background:var(--card);border-bottom:0}
+.top{position:sticky;top:0;z-index:40;height:var(--header-height);display:flex;align-items:center;gap:14px;padding:0 20px;background:var(--card);border-bottom:1px solid var(--line)}
 .top img{height:72px;width:auto;flex-shrink:0}.sp{flex:1}
 .search{position:relative;width:min(420px,52vw)}.search svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--mut)}
 .search input{width:100%;height:42px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:0 13px 0 38px;font:inherit;font-size:.9rem;outline:none}
@@ -21,7 +21,7 @@ a{color:inherit;text-decoration:none}svg{width:1.1em;height:1.1em;flex:none;stro
 .burger .close-icon,.burger[aria-expanded=true] .menu-icon{display:none}
 .burger[aria-expanded=true] .close-icon{display:block}
 .layout{display:grid;grid-template-columns:260px 1fr}
-aside{position:sticky;top:var(--header-height);align-self:start;height:calc(100vh - var(--header-height));overflow:auto;padding:22px 14px;background:var(--card);border-right:0;display:flex;flex-direction:column}
+aside{position:sticky;top:var(--header-height);align-self:start;height:calc(100vh - var(--header-height));overflow:auto;padding:22px 14px;background:var(--card);border-right:1px solid var(--line);display:flex;flex-direction:column}
 aside h6{margin:18px 10px 8px;font-size:.68rem;letter-spacing:.16em;color:var(--mut);font-weight:800}aside h6:first-child{margin-top:0}
 aside a{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;font-size:.9rem;font-weight:500;color:var(--mut);border-left:3px solid transparent}
 aside a:hover{background:var(--bg);color:var(--ink)}aside a.on{background:var(--soft);color:var(--brand);font-weight:700;border-left-color:var(--brand)}
